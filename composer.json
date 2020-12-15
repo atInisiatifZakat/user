@@ -15,8 +15,8 @@
     "require": {
         "php": "^7.4",
         "ext-json": "*",
-        "inisiatif/common": "^1.0",
-        "inisiatif/contract": "^1.0",
+        "inisiatif/common": "^1.1",
+        "inisiatif/contract": "^1.1",
         "illuminate/database": "^7.0",
         "illuminate/events": "^7.0",
         "illuminate/http": "^7.0",
