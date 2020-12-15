@@ -1,0 +1,53 @@
+{
+    "name": "inisiatif/user",
+    "description": "User package using in Inisiatif Zakat Indonesia",
+    "license": "proprietary",
+    "type": "library",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.packagist.com/inisiatif/"
+        },
+        {
+            "packagist.org": false
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "ext-json": "*",
+        "inisiatif/common": "^1.1",
+        "inisiatif/contract": "^1.1",
+        "illuminate/database": "^7.0",
+        "illuminate/events": "^7.0",
+        "illuminate/http": "^7.0",
+        "illuminate/support": "^7.0",
+        "webmozart/assert": "^1.9"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^5.10",
+        "mockery/mockery": "^1.3.1",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Inisiatif\\Package\\User\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Inisiatif\\Package\\User\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.1-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
