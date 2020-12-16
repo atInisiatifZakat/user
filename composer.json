@@ -21,6 +21,7 @@
         "illuminate/events": "^7.0",
         "illuminate/http": "^7.0",
         "illuminate/support": "^7.0",
+        "tymon/jwt-auth": "1.0.2",
         "webmozart/assert": "^1.9"
     },
     "require-dev": {

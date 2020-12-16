@@ -5,22 +5,36 @@ declare(strict_types=1);
 namespace Inisiatif\Package\User\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Inisiatif\Package\User\Models\AuthToken;
+use Inisiatif\Package\User\Models\AuthTokenBlacklist;
 use Inisiatif\Package\User\Repositories\UserRepository;
+use Inisiatif\Package\User\Repositories\AuthTokenRepository;
+use Inisiatif\Package\Contract\User\Model\AuthTokenInterface;
+use Inisiatif\Package\User\Repositories\AuthTokenBlacklistRepository;
+use Inisiatif\Package\Contract\User\Model\AuthTokenBlacklistInterface;
 use Inisiatif\Package\Contract\User\Repository\UserRepositoryInterface;
+use Inisiatif\Package\Contract\User\Repository\AuthTokenRepositoryInterface;
+use Inisiatif\Package\Contract\User\Repository\AuthTokenBlacklistRepositoryInterface;
 
 final class UserServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        $migrations = [
+        $this->publishes([
             __DIR__ . '/../../migrations/2020_09_14_160119_create_users_table.php.stub' => $this->app->databasePath() . '/migrations/2020_09_14_160119_create_users_table.php',
-        ];
+        ], 'inisiatif-user-migration');
 
-        $this->publishes($migrations, 'inisiatif-user-migration');
+        $this->publishes([
+            __DIR__ . '/../../migrations/2020_10_12_095841_create_auth_tokens_table.php.stub' => $this->app->databasePath() . '/migrations/2020_10_12_095841_create_auth_tokens_table.php',
+        ], 'inisiatif-auth-token-migration');
     }
 
     public function register(): void
     {
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(AuthTokenInterface::class, AuthToken::class);
+        $this->app->bind(AuthTokenRepositoryInterface::class, AuthTokenRepository::class);
+        $this->app->bind(AuthTokenBlacklistInterface::class, AuthTokenBlacklist::class);
+        $this->app->bind(AuthTokenBlacklistRepositoryInterface::class, AuthTokenBlacklistRepository::class);
     }
 }
