@@ -16,6 +16,11 @@ final class AuthTokenBlacklist extends Model implements AuthTokenBlacklistInterf
         'expired_at' => 'datetime',
     ];
 
+    public function getTable()
+    {
+        return config('user.table_names.auth_token_blacklists', parent::getTable());
+    }
+
     public function getId(): ?int
     {
         return $this->getAttribute('id');

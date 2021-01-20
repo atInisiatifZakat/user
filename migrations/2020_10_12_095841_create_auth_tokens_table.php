@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+use Inisiatif\Package\User\Providers\UserServiceProvider;
 
-class StubCreateAuthTokensTable extends Migration
+class CreateAuthTokensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,6 +14,10 @@ class StubCreateAuthTokensTable extends Migration
      */
     public function up()
     {
+        if (UserServiceProvider::$isRunMigration === false) {
+            return;
+        }
+
         Schema::create('auth_tokens', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('key')->unique();

@@ -38,6 +38,11 @@ abstract class AbstractUser extends Model implements UserInterface, LoginableAwa
         'password', 'remember_token',
     ];
 
+    public function getTable()
+    {
+        return config('user.table_names.users', parent::getTable());
+    }
+
     public static function fromArray(array $attributes): UserInterface
     {
         return UserBuilder::makeFromArray(new static(), $attributes);

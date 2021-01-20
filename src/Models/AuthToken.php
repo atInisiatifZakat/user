@@ -16,6 +16,11 @@ final class AuthToken extends Model implements AuthTokenInterface
         'expired_at' => 'datetime',
     ];
 
+    public function getTable()
+    {
+        return config('user.table_names.auth_tokens', parent::getTable());
+    }
+
     public static function fromArray(array $input): AuthTokenInterface
     {
         return AuthTokenBuilder::makeFromArray(new self(), $input);

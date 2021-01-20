@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Inisiatif\Package\User\Providers;
 
+use phpseclib\System\SSH\Agent;
 use Illuminate\Support\ServiceProvider;
 use Inisiatif\Package\User\Models\AuthToken;
 use Inisiatif\Package\User\Models\AuthTokenBlacklist;
@@ -18,15 +19,13 @@ use Inisiatif\Package\Contract\User\Repository\AuthTokenBlacklistRepositoryInter
 
 final class UserServiceProvider extends ServiceProvider
 {
+    public static $isRunMigration = true;
+
     public function boot(): void
     {
-        $this->publishes([
-            __DIR__ . '/../../migrations/2020_09_14_160119_create_users_table.php.stub' => $this->app->databasePath() . '/migrations/2020_09_14_160119_create_users_table.php',
-        ], 'inisiatif-user-migration');
+        $this->loadMigrationsFrom(__DIR__ . '/../../migrations');
 
-        $this->publishes([
-            __DIR__ . '/../../migrations/2020_10_12_095841_create_auth_tokens_table.php.stub' => $this->app->databasePath() . '/migrations/2020_10_12_095841_create_auth_tokens_table.php',
-        ], 'inisiatif-auth-token-migration');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/user.php', 'user');
     }
 
     public function register(): void

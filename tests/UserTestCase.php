@@ -17,8 +17,6 @@ abstract class UserTestCase extends TestCase
     {
         parent::setUp();
 
-        $this->loadMigrationsFrom(__DIR__ . '/stub/migrations');
-
         $this->app->bind(AbstractUser::class, UserModel::class);
     }
 
@@ -47,9 +45,9 @@ abstract class UserTestCase extends TestCase
         $app['config']->set('database.default', 'testbench');
 
         $app['config']->set('database.connections.testbench', [
-            'driver'   => 'sqlite',
+            'driver' => 'sqlite',
             'database' => ':memory:',
-            'prefix'   => '',
+            'prefix' => '',
         ]);
     }
 }
