@@ -15,10 +15,6 @@ class CreateUsersTable extends Migration
      */
     public function up(): void
     {
-        if (UserServiceProvider::$isRunMigration === false) {
-            return;
-        }
-
         Schema::create('users', function (Blueprint $table): void {
             $table->uuid('id')->primary();
             $table->string('name');

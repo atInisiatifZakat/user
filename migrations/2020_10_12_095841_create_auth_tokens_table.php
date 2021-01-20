@@ -14,10 +14,6 @@ class CreateAuthTokensTable extends Migration
      */
     public function up()
     {
-        if (UserServiceProvider::$isRunMigration === false) {
-            return;
-        }
-
         Schema::create('auth_tokens', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('key')->unique();

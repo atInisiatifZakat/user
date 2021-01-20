@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Inisiatif\Package\User\Providers;
 
-use phpseclib\System\SSH\Agent;
 use Illuminate\Support\ServiceProvider;
 use Inisiatif\Package\User\Models\AuthToken;
 use Inisiatif\Package\User\Models\AuthTokenBlacklist;
@@ -23,7 +22,9 @@ final class UserServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../../migrations');
+        if (self::$isRunMigration) {
+            $this->loadMigrationsFrom(__DIR__ . '/../../migrations');
+        }
 
         $this->mergeConfigFrom(__DIR__ . '/../../config/user.php', 'user');
     }
