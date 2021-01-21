@@ -40,7 +40,7 @@ abstract class UserTestCase extends TestCase
         return $user;
     }
 
-    protected function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app): void
     {
         $app['config']->set('database.default', 'testbench');
 

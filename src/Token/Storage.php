@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Inisiatif\Package\User\Token;
 
@@ -18,7 +20,7 @@ final class Storage implements StorageInterface
         $this->repository = $repository;
     }
 
-    public function add($key, $value, $minutes)
+    public function add($key, $value, $minutes): void
     {
         if ($this->get($key)) {
             return;
@@ -35,7 +37,7 @@ final class Storage implements StorageInterface
         $this->repository->save($model);
     }
 
-    public function forever($key, $value)
+    public function forever($key, $value): void
     {
         if ($this->get($key)) {
             return;
@@ -59,19 +61,19 @@ final class Storage implements StorageInterface
         return true;
     }
 
-    public function flush()
+    public function flush(): void
     {
     }
 
-    protected function getModel(): AuthTokenBlacklistInterface
+    private function getModel(): AuthTokenBlacklistInterface
     {
-        if (!$this->repository instanceof EloquentAwareRepositoryInterface) {
+        if (! $this->repository instanceof EloquentAwareRepositoryInterface) {
             throw new RuntimeException('Repository must be instanceof ' . EloquentAwareRepositoryInterface::class);
         }
 
         $model = $this->repository->getModel();
 
-        if (!$model instanceof AuthTokenBlacklistInterface) {
+        if (! $model instanceof AuthTokenBlacklistInterface) {
             throw new RuntimeException('Model must be instanceof ' . AuthTokenBlacklistInterface::class);
         }
 

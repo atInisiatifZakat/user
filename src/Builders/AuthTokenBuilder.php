@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Inisiatif\Package\User\Builders;
 
@@ -36,7 +38,6 @@ final class AuthTokenBuilder extends ModelBuilder
         $token->setAttribute('user_id', $attributes['user_id']);
         $token->setTokenKey($attributes['key']);
         $token->setToken($attributes['token']);
-
 
         $expiredAt = Arr::get($attributes, 'expired_at');
 

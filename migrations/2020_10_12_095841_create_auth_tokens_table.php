@@ -1,20 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Inisiatif\Package\User\Providers\UserServiceProvider;
 
-class CreateAuthTokensTable extends Migration
+final class CreateAuthTokensTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('auth_tokens', function (Blueprint $table) {
+        Schema::create('auth_tokens', function (Blueprint $table): void {
             $table->uuid('id')->primary();
             $table->string('key')->unique();
             $table->text('token');
@@ -23,7 +22,7 @@ class CreateAuthTokensTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('auth_token_blacklists', function (Blueprint $table) {
+        Schema::create('auth_token_blacklists', function (Blueprint $table): void {
             $table->id();
             $table->string('key')->unique();
             $table->json('values');
@@ -34,10 +33,8 @@ class CreateAuthTokensTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('tokens');
         Schema::dropIfExists('token_blacklists');
