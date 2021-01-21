@@ -13,7 +13,7 @@ abstract class AbstractUserRepository extends AbstractRepository implements User
 {
     public function __construct(AbstractUser $user)
     {
-        $this->model = $user;
+        $this->model = get_class($user);
     }
 
     public function findUsingEmailOrUsername(string $value): ?UserInterface

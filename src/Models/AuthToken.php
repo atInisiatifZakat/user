@@ -33,6 +33,7 @@ final class AuthToken extends Model implements AuthTokenInterface
 
     public function setId($id)
     {
+        Assert::string($id);
         Assert::uuid($id);
 
         return $this->setAttribute('id', $id);

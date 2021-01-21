@@ -24,16 +24,16 @@ final class ChangePasswordAction extends UserAction
 
     public function handle(UserInterface $user, string $plainPassword): UserInterface
     {
-        $newUser = $user->setPassword(
+        $user->setPassword(
             $this->hasher->make(
                 md5($plainPassword)
             )
         );
 
-        $this->repository->save($newUser);
+        $this->repository->save($user);
 
-        $this->event->dispatch(PasswordWasChanged::class, $newUser);
+        $this->event->dispatch(PasswordWasChanged::class, $user);
 
-        return $newUser;
+        return $user;
     }
 }

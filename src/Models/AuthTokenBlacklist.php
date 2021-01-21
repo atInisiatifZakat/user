@@ -58,9 +58,6 @@ final class AuthTokenBlacklist extends Model implements AuthTokenBlacklistInterf
         return $this->getAttribute('expired_at');
     }
 
-    /**
-     * @param DateTimeInterface $value
-     */
     public function setExpiredAt($value): self
     {
         Assert::nullOrIsInstanceOf($value, DateTimeInterface::class);

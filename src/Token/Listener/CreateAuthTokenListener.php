@@ -29,21 +29,19 @@ final class CreateAuthTokenListener implements ShouldQueue
      */
     public function handle(UserEvent $event): void
     {
-        if (!$event instanceof TokenAwareInterface && !$event instanceof ModelEventInterface) {
-            return;
+        if ($event instanceof TokenAwareInterface && $event instanceof ModelEventInterface) {
+            $payload = $this->manager->decode(new Token($event->getToken()));
+
+            $expiredDate = Carbon::createFromTimestamp($payload->get('exp'));
+
+            $token = AuthToken::fromArray([
+                'user_id' => $event->getModel()->getId(),
+                'key' => $payload->get('jti'),
+                'token' => $event->getToken(),
+                'expired_at' => $expiredDate,
+            ]);
+
+            $this->action->handle($token);
         }
-
-        $payload = $this->manager->decode(new Token($event->getToken()));
-
-        $expiredDate = Carbon::createFromTimestamp($payload->get('exp'));
-
-        $token = AuthToken::fromArray([
-            'user_id' => $event->getModel()->getId(),
-            'key' => $payload->get('jti'),
-            'token' => $event->getToken(),
-            'expired_at' => $expiredDate,
-        ]);
-
-        $this->action->handle($token);
     }
 }

@@ -2,9 +2,11 @@
 
 namespace Inisiatif\Package\User\Token;
 
+use RuntimeException;
 use Illuminate\Support\Carbon;
 use Tymon\JWTAuth\Contracts\Providers\Storage as StorageInterface;
 use Inisiatif\Package\Contract\User\Model\AuthTokenBlacklistInterface;
+use Inisiatif\Package\Contract\Common\Repository\EloquentAwareRepositoryInterface;
 use Inisiatif\Package\Contract\User\Repository\AuthTokenBlacklistRepositoryInterface;
 
 final class Storage implements StorageInterface
@@ -16,17 +18,13 @@ final class Storage implements StorageInterface
         $this->repository = $repository;
     }
 
-    /**
-     * @noinspection PhpUndefinedMethodInspection
-     */
     public function add($key, $value, $minutes)
     {
         if ($this->get($key)) {
             return;
         }
 
-        /** @var AuthTokenBlacklistInterface $model */
-        $model = $this->repository->getModel();
+        $model = $this->getModel();
 
         $model->setTokenKey($key);
         $model->setTokenValues($value);
@@ -37,17 +35,13 @@ final class Storage implements StorageInterface
         $this->repository->save($model);
     }
 
-    /**
-     * @noinspection PhpUndefinedMethodInspection
-     */
     public function forever($key, $value)
     {
         if ($this->get($key)) {
             return;
         }
 
-        /** @var AuthTokenBlacklistInterface $model */
-        $model = $this->repository->getModel();
+        $model = $this->getModel();
 
         $model->setTokenKey($key);
         $model->setTokenValues($value);
@@ -65,8 +59,22 @@ final class Storage implements StorageInterface
         return true;
     }
 
-    public function flush(): bool
+    public function flush()
     {
-        return true;
+    }
+
+    protected function getModel(): AuthTokenBlacklistInterface
+    {
+        if (!$this->repository instanceof EloquentAwareRepositoryInterface) {
+            throw new RuntimeException('Repository must be instanceof ' . EloquentAwareRepositoryInterface::class);
+        }
+
+        $model = $this->repository->getModel();
+
+        if (!$model instanceof AuthTokenBlacklistInterface) {
+            throw new RuntimeException('Model must be instanceof ' . AuthTokenBlacklistInterface::class);
+        }
+
+        return $model;
     }
 }
