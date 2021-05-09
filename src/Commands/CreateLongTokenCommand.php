@@ -9,7 +9,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Auth\Factory;
 use Illuminate\Contracts\Events\Dispatcher;
-use Inisiatif\Backend\Account\Domain\User\Events\UserWasLogin;
+use Inisiatif\Package\User\Events\TokenWasGenerated;
 use Inisiatif\Package\Contract\User\Repository\UserRepositoryInterface;
 
 final class CreateLongTokenCommand extends Command
@@ -45,7 +45,7 @@ final class CreateLongTokenCommand extends Command
 
         $this->info('Token : ' . $token);
 
-        $event->dispatch(new UserWasLogin($user, $token));
+        $event->dispatch(new TokenWasGenerated($user, $token));
 
         return 0;
     }
