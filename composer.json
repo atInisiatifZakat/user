@@ -17,6 +17,7 @@
         "ext-json": "*",
         "inisiatif/common": "^1.1",
         "inisiatif/contract": "^1.1",
+        "illuminate/console": "^7.30|^8.26",
         "illuminate/database": "^7.30|^8.26",
         "illuminate/events": "^7.30|^8.26",
         "illuminate/http": "^7.30|^8.26",

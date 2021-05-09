@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Inisiatif\Package\User\Models\AuthToken;
 use Inisiatif\Package\User\Models\AuthTokenBlacklist;
 use Inisiatif\Package\User\Repositories\UserRepository;
+use Inisiatif\Package\User\Commands\CreateLongTokenCommand;
 use Inisiatif\Package\User\Repositories\AuthTokenRepository;
 use Inisiatif\Package\Contract\User\Model\AuthTokenInterface;
 use Inisiatif\Package\User\Repositories\AuthTokenBlacklistRepository;
@@ -27,6 +28,12 @@ final class UserServiceProvider extends ServiceProvider
         }
 
         $this->mergeConfigFrom(__DIR__ . '/../../config/user.php', 'user');
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                CreateLongTokenCommand::class
+            ]);
+        }
     }
 
     public function register(): void
