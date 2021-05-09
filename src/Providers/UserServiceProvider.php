@@ -31,7 +31,7 @@ final class UserServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                CreateLongTokenCommand::class
+                CreateLongTokenCommand::class,
             ]);
         }
     }

@@ -24,11 +24,11 @@ final class CreateLongTokenCommand extends Command
      */
     public function handle(Factory $auth, Dispatcher $event, UserRepositoryInterface $repository): int
     {
-        $userId = (string)$this->argument('user');
+        $userId = (string) $this->argument('user');
 
         $user = $repository->findUsingId($userId);
 
-        if($user === null) {
+        if ($user === null) {
             $this->error('User not exists');
 
             return self::FAILURE;
