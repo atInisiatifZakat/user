@@ -36,7 +36,7 @@ final class CreateAuthTokensTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tokens');
-        Schema::dropIfExists('token_blacklists');
+        Schema::dropIfExists('auth_tokens');
+        Schema::dropIfExists('auth_token_blacklists');
     }
 }
