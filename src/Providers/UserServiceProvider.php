@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Inisiatif\Package\User\Providers;
 
+use Laravel\Sanctum\Sanctum;
 use Illuminate\Support\ServiceProvider;
 use Inisiatif\Package\User\Models\AuthToken;
 use Inisiatif\Package\User\Models\AuthTokenBlacklist;
+use Inisiatif\Package\User\Models\PersonalAccessToken;
 use Inisiatif\Package\User\Repositories\UserRepository;
 use Inisiatif\Package\User\Commands\CreateLongTokenCommand;
 use Inisiatif\Package\User\Repositories\AuthTokenRepository;
@@ -23,6 +25,8 @@ final class UserServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
+
         if (self::$isRunMigration) {
             $this->loadMigrationsFrom(__DIR__ . '/../../migrations');
         }
@@ -38,6 +42,8 @@ final class UserServiceProvider extends ServiceProvider
 
     public function register(): void
     {
+        Sanctum::ignoreMigrations();
+        
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(AuthTokenInterface::class, AuthToken::class);
         $this->app->bind(AuthTokenRepositoryInterface::class, AuthTokenRepository::class);

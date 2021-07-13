@@ -22,6 +22,7 @@
         "illuminate/events": "^7.30|^8.26",
         "illuminate/http": "^7.30|^8.26",
         "illuminate/support": "^7.30|^8.26",
+        "laravel/sanctum": "^2.11",
         "ramsey/uuid": "^4.0",
         "tymon/jwt-auth": "1.0.2",
         "webmozart/assert": "^1.9"

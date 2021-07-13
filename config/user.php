@@ -7,5 +7,7 @@ return [
         'auth_tokens' => env('USER_TABLE_NAME_AUTH_TOKENS', 'auth_tokens'),
 
         'auth_token_blacklists' => env('USER_TABLE_NAME_AUTH_TOKEN_BLACKLISTS', 'auth_token_blacklists'),
+
+        'personal_access_tokens' => env('USER_TABLE_NAME_PERSONAL_ACCESS_TOKENS', 'personal_access_tokens')
     ],
 ];
