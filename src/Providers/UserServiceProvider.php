@@ -43,7 +43,7 @@ final class UserServiceProvider extends ServiceProvider
     public function register(): void
     {
         Sanctum::ignoreMigrations();
-        
+
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(AuthTokenInterface::class, AuthToken::class);
         $this->app->bind(AuthTokenRepositoryInterface::class, AuthTokenRepository::class);
