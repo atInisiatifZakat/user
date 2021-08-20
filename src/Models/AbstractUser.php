@@ -23,7 +23,9 @@ use Illuminate\Auth\Passwords\CanResetPassword as CanResetPasswordTrait;
 abstract class AbstractUser extends Model implements UserInterface, LoginableAwareInterface, Authenticatable, ToggleAwareInterface, CanResetPassword
 {
     use Notifiable;
+
     use AuthenticatableTrait;
+
     use CanResetPasswordTrait;
 
     public $incrementing = false;
