@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-final class UserCreatePersonalAccessTokensTable extends Migration
-{
+return new class() extends Migration {
     public function up(): void
     {
         Schema::create('personal_access_tokens', function (Blueprint $table): void {
@@ -25,4 +24,4 @@ final class UserCreatePersonalAccessTokensTable extends Migration
     {
         Schema::dropIfExists('personal_access_tokens');
     }
-}
+};

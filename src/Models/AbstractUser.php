@@ -14,6 +14,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Inisiatif\Package\User\Builders\UserBuilder;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Inisiatif\Package\Contract\User\Model\UserInterface;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Inisiatif\Package\Contract\User\Model\LoginableAwareInterface;
@@ -43,6 +44,11 @@ abstract class AbstractUser extends Model implements UserInterface, LoginableAwa
     public function getTable()
     {
         return config('user.table_names.users', parent::getTable());
+    }
+
+    public function loginable(): MorphTo
+    {
+        return $this->morphTo();
     }
 
     public static function fromArray(array $attributes): UserInterface

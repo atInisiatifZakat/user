@@ -8,6 +8,7 @@ use Orchestra\Testbench\TestCase;
 use Inisiatif\Package\User\Models\AbstractUser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Inisiatif\Package\User\Providers\UserServiceProvider;
+use Inisiatif\Package\Common\Providers\CommonServiceProvider;
 
 abstract class UserTestCase extends TestCase
 {
@@ -23,6 +24,7 @@ abstract class UserTestCase extends TestCase
     protected function getPackageProviders($app): array
     {
         return [
+            CommonServiceProvider::class,
             UserServiceProvider::class,
         ];
     }
