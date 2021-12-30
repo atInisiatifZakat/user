@@ -39,4 +39,9 @@ final class Volunteer extends Model implements HasBranchInterface
     {
         return $this->belongsTo(Employee::class)->withoutGlobalScopes();
     }
+
+    public function getTable()
+    {
+        return \config('user.table_names.volunteers', parent::getTable());
+    }
 }

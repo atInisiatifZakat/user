@@ -12,10 +12,15 @@ return new class() extends Migration {
         Schema::create('employees', function (Blueprint $table): void {
             $table->uuid('id')->primary();
 
+            $table->string('nip', 36)->unique();
+
             $table->foreignUuid('branch_id');
 
             $table->string('name');
             $table->string('email', 150)->unique();
+
+            $table->boolean('is_active')->default(false);
+            $table->unsignedBigInteger('intranet_id')->nullable();
 
             $table->timestamps();
         });

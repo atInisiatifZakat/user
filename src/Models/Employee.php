@@ -9,8 +9,9 @@ use Inisiatif\Package\Common\Concerns\HasBranch;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Inisiatif\Package\Common\Concerns\UuidPrimaryKey;
 use Inisiatif\Package\Common\Contracts\HasBranchInterface;
+use Inisiatif\Package\Contract\Common\Model\ResourceInterface;
 
-final class Employee extends Model implements HasBranchInterface
+final class Employee extends Model implements HasBranchInterface, ResourceInterface
 {
     use HasBranch;
 
@@ -21,5 +22,10 @@ final class Employee extends Model implements HasBranchInterface
         $userClass = \get_class(app(AbstractUser::class));
 
         return $this->morphOne($userClass, 'loginable');
+    }
+
+    public function getTable()
+    {
+        return \config('user.table_names.employees', parent::getTable());
     }
 }
