@@ -80,8 +80,6 @@ abstract class AbstractUser extends Model implements UserInterface, LoginableAwa
 
     public function setUsername(string $value)
     {
-        Assert::regex($value, '/^[A-Za-z.-]+$/');
-
         return $this->setAttribute('username', $value);
     }
 
