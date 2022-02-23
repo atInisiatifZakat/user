@@ -16,10 +16,6 @@ final class VolunteerTest extends UserTestCase
 {
     public function testUserRelationMustBeReturnCorrectClass(): void
     {
-        $migration = require __DIR__ . '/../../migrations/testing/2021_09_16_000000_create_employees_and_volunteers_table.php';
-
-        $migration->up();
-
         $employee = new Volunteer();
 
         $this->assertSame(UserModel::class, \get_class($employee->user()->getModel()));
@@ -30,16 +26,10 @@ final class VolunteerTest extends UserTestCase
         $this->app->bind(UserModel::class, \get_class($userClass));
 
         $this->assertSame(\get_class($userClass), \get_class($employee->user()->getModel()));
-
-        $migration->down();
     }
 
     public function testMustBeReturnBranch(): void
     {
-        $migration = require __DIR__ . '/../../migrations/testing/2021_09_16_000000_create_employees_and_volunteers_table.php';
-
-        $migration->up();
-
         $branch = Branch::query()->forceCreate([
             'type' => 'KP',
             'name' => 'Branch Name',
@@ -63,7 +53,5 @@ final class VolunteerTest extends UserTestCase
 
         $this->assertSame(Branch::class, \get_class($volunteer->branch()->getModel()));
         $this->assertSame($branch->getAttribute('id'), $volunteer->loadMissing('branch')->getAttribute('branch')->getAttribute('id'));
-
-        $migration->down();
     }
 }

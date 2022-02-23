@@ -19,6 +19,8 @@ final class UserServiceProvider extends ServiceProvider
 {
     public static bool $isRunMigration = true;
 
+    public static bool $isRunningEmployeeMigration = true;
+
     public function boot(): void
     {
         Relation::morphMap([
@@ -30,6 +32,10 @@ final class UserServiceProvider extends ServiceProvider
 
         if (self::$isRunMigration) {
             $this->loadMigrationsFrom(__DIR__ . '/../../migrations');
+        }
+
+        if (self::$isRunningEmployeeMigration) {
+            $this->loadMigrationsFrom(__DIR__ . '/../../migrations/testing');
         }
 
         $this->mergeConfigFrom(__DIR__ . '/../../config/user.php', 'user');
