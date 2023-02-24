@@ -3,6 +3,7 @@
 namespace Inisiatif\Package\User;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 final class SanctumStateful
 {
@@ -12,10 +13,12 @@ final class SanctumStateful
 
     public static function domains(array|string $subdomains): array
     {
-        $subdomainWithPorts = Arr::flatten(\array_map(static function (string $domain) {
-            return \array_map(static fn(string $port) => \sprintf('%s:%s', $domain, $port), self::$ports);
+        $subdomainWithPorts = Arr::flatten(\array_map(static function (string $domain): array|string {
+            return Str::contains($domain, ':') ? $domain : \array_map(static fn(string $port) => \sprintf('%s:%s', $domain, $port), self::$ports);
         }, Arr::wrap($subdomains)));
 
-        return \array_merge($subdomains, $subdomainWithPorts);
+        return \array_unique(
+            \array_merge($subdomains, $subdomainWithPorts)
+        );
     }
 }
