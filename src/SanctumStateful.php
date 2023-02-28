@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Inisiatif\Package\User;
 
 use Illuminate\Support\Arr;
@@ -14,7 +16,7 @@ final class SanctumStateful
     public static function domains(array|string $subdomains): array
     {
         $subdomainWithPorts = Arr::flatten(\array_map(static function (string $domain): array|string {
-            return Str::contains($domain, ':') ? $domain : \array_map(static fn(string $port) => \sprintf('%s:%s', $domain, $port), self::$ports);
+            return Str::contains($domain, ':') ? $domain : \array_map(static fn (string $port) => \sprintf('%s:%s', $domain, $port), self::$ports);
         }, Arr::wrap($subdomains)));
 
         return \array_unique(
