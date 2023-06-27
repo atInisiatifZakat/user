@@ -8,7 +8,6 @@
         "ext-json": "*",
         "inisiatif/common": "^1.1",
         "inisiatif/contract": "^1.1",
-        "laravel/framework": "^9.19",
         "laravel/sanctum": "^2.11",
         "ramsey/uuid": "^4.0",
         "webmozart/assert": "^1.9"
