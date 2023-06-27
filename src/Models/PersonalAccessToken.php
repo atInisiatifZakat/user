@@ -8,8 +8,9 @@ use Laravel\Sanctum\PersonalAccessToken as SanctumPersonalAccessToken;
 
 final class PersonalAccessToken extends SanctumPersonalAccessToken
 {
-    public function getTable()
+    public function getTable(): string
     {
+        /** @var string */
         return \config('user.table_names.personal_access_tokens', parent::getTable());
     }
 }

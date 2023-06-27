@@ -5,26 +5,26 @@ declare(strict_types=1);
 namespace Inisiatif\Package\User\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Inisiatif\Package\Common\Concerns\HasBranch;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Inisiatif\Package\Common\Concerns\UuidPrimaryKey;
-use Inisiatif\Package\Common\Contracts\HasBranchInterface;
-use Inisiatif\Package\Contract\Common\Model\ResourceInterface;
+use Inisiatif\Package\User\ModelRegistrar;
+use Inisiatif\Package\User\Models\Concern\HasUser;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-final class Employee extends Model implements HasBranchInterface, ResourceInterface
+final class Employee extends Model
 {
-    use HasBranch;
-    use UuidPrimaryKey;
+    use HasUser;
+    use HasUuids;
 
-    public function user(): MorphOne
+    public function getTable(): string
     {
-        $userClass = \get_class(app(AbstractUser::class));
-
-        return $this->morphOne($userClass, 'loginable');
+        /** @var string */
+        return \config('user.table_names.employees', parent::getTable());
     }
 
-    public function getTable()
+    public function branch(): BelongsTo
     {
-        return \config('user.table_names.employees', parent::getTable());
+        return $this->belongsTo(
+            ModelRegistrar::getBranchModelClass(), 'branch_id'
+        );
     }
 }

@@ -5,43 +5,39 @@ declare(strict_types=1);
 namespace Inisiatif\Package\User\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Inisiatif\Package\Common\Models\Branch;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Inisiatif\Package\User\ModelRegistrar;
+use Inisiatif\Package\User\Models\Concern\HasUser;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Inisiatif\Package\Common\Concerns\UuidPrimaryKey;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
-use Inisiatif\Package\Common\Contracts\HasBranchInterface;
 
-final class Volunteer extends Model implements HasBranchInterface
+final class Volunteer extends Model
 {
-    use UuidPrimaryKey;
+    use HasUser;
+    use HasUuids;
 
-    public function user(): MorphOne
+    public function getTable(): string
     {
-        $userClass = \get_class(app(AbstractUser::class));
+        /** @var string */
+        return \config('user.table_names.volunteers', parent::getTable());
+    }
 
-        return $this->morphOne($userClass, 'loginable');
+    public function employee(): BelongsTo
+    {
+        return $this->belongsTo(
+            ModelRegistrar::getEmployeeModelClass()
+        );
     }
 
     public function branch(): HasOneThrough
     {
         return $this->hasOneThrough(
-            Branch::class,
-            Employee::class,
+            ModelRegistrar::getBranchModelClass(),
+            ModelRegistrar::getEmployeeModelClass(),
             'id',
             'id',
             'employee_id',
             'branch_id'
-        )->withoutGlobalScopes();
-    }
-
-    public function employee(): BelongsTo
-    {
-        return $this->belongsTo(Employee::class)->withoutGlobalScopes();
-    }
-
-    public function getTable()
-    {
-        return \config('user.table_names.volunteers', parent::getTable());
+        );
     }
 }
