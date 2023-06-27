@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="5.13.0@a0a9c27630bcf8301ee78cb06741d2907d8c9fef">
+  <file src="src/Actions/ChangePasswordAction.php">
+    <UnusedClass>
+      <code>ChangePasswordAction</code>
+    </UnusedClass>
+  </file>
+  <file src="src/Actions/UserCreateAction.php">
+    <UnusedClass>
+      <code>UserCreateAction</code>
+    </UnusedClass>
+  </file>
+  <file src="src/Actions/UserDisableOrEnableAction.php">
+    <UnusedClass>
+      <code>UserDisableOrEnableAction</code>
+    </UnusedClass>
+  </file>
+  <file src="src/Actions/UserProfileUpdateAction.php">
+    <UnusedClass>
+      <code>UserProfileUpdateAction</code>
+    </UnusedClass>
+  </file>
+  <file src="src/Models/AbstractUser.php">
+    <PossiblyUnusedMethod>
+      <code>fromArray</code>
+      <code>loginable</code>
+    </PossiblyUnusedMethod>
+    <PossiblyUnusedReturnValue>
+      <code>self</code>
+    </PossiblyUnusedReturnValue>
+  </file>
+  <file src="src/Models/Employee.php">
+    <PossiblyUnusedMethod>
+      <code>user</code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Models/Volunteer.php">
+    <InvalidReturnStatement>
+      <code><![CDATA[$this->belongsTo(Employee::class)->withoutGlobalScopes()]]></code>
+      <code><![CDATA[$this->hasOneThrough(
+            Branch::class,
+            Employee::class,
+            'id',
+            'id',
+            'employee_id',
+            'branch_id'
+        )->withoutGlobalScopes()]]></code>
+    </InvalidReturnStatement>
+    <InvalidReturnType>
+      <code>BelongsTo</code>
+      <code>HasOneThrough</code>
+    </InvalidReturnType>
+    <PossiblyUnusedMethod>
+      <code>employee</code>
+      <code>user</code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Providers/UserServiceProvider.php">
+    <UnusedClass>
+      <code>UserServiceProvider</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SanctumStateful.php">
+    <PossiblyInvalidArgument>
+      <code>$subdomains</code>
+    </PossiblyInvalidArgument>
+    <UnusedClass>
+      <code>SanctumStateful</code>
+    </UnusedClass>
+  </file>
+</files>
