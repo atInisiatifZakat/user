@@ -14,19 +14,11 @@ use Inisiatif\Package\Contract\User\Model\UserInterface;
 
 final class UserBuilder extends ModelBuilder
 {
-    /**
-     * @param UserInterface|Model $model
-     */
     public static function makeFromRequest(Model $model, Request $request): UserInterface
     {
         return self::makeFromArray($model, $request->input());
     }
 
-    /**
-     * @param UserInterface|Model $model
-     *
-     * @noinspection PhpPossiblePolymorphicInvocationInspection
-     */
     public static function makeFromArray(Model $model, array $attributes): UserInterface
     {
         Assert::isInstanceOf($model, AbstractUser::class);
@@ -66,6 +58,7 @@ final class UserBuilder extends ModelBuilder
             }
         }
 
+        /** @var UserInterface */
         return $model;
     }
 }

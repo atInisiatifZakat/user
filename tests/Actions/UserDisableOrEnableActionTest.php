@@ -16,9 +16,10 @@ use Inisiatif\Package\Contract\User\Repository\UserRepositoryInterface;
 
 final class UserDisableOrEnableActionTest extends UserTestCase
 {
-    public function testCanDisableUser(): void
+    public function test_can_disable_user(): void
     {
-        $user = new class() extends AbstractUser {
+        $user = new class() extends AbstractUser
+        {
         };
 
         $dispatcher = m::mock(Dispatcher::class);
@@ -39,7 +40,7 @@ final class UserDisableOrEnableActionTest extends UserTestCase
         $this->assertFalse($disabledUser->isActive());
     }
 
-    public function testCanActualDisableUser(): void
+    public function test_can_actual_disable_user(): void
     {
         $user = $this->createUser();
 
@@ -57,9 +58,10 @@ final class UserDisableOrEnableActionTest extends UserTestCase
         $event->assertDispatched(UserWasDisabled::class);
     }
 
-    public function testCanEnableUser(): void
+    public function test_can_enable_user(): void
     {
-        $user = new class() extends AbstractUser {
+        $user = new class() extends AbstractUser
+        {
         };
 
         $dispatcher = m::mock(Dispatcher::class);
@@ -80,7 +82,7 @@ final class UserDisableOrEnableActionTest extends UserTestCase
         $this->assertNull($disabledUser->getDeactivatedAt());
     }
 
-    public function testCanActualEnableUser(): void
+    public function test_can_actual_enable_user(): void
     {
         $user = $this->createUser();
 

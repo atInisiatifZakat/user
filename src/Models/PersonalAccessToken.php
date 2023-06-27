@@ -10,6 +10,6 @@ final class PersonalAccessToken extends SanctumPersonalAccessToken
 {
     public function getTable()
     {
-        return config('user.table_names.personal_access_tokens', parent::getTable());
+        return \config('user.table_names.personal_access_tokens', parent::getTable());
     }
 }

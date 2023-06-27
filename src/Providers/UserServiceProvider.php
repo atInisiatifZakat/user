@@ -31,14 +31,14 @@ final class UserServiceProvider extends ServiceProvider
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
 
         if (self::$isRunMigration) {
-            $this->loadMigrationsFrom(__DIR__ . '/../../migrations');
+            $this->loadMigrationsFrom(__DIR__.'/../../migrations');
         }
 
         if (self::$isRunningEmployeeMigration) {
-            $this->loadMigrationsFrom(__DIR__ . '/../../migrations/testing');
+            $this->loadMigrationsFrom(__DIR__.'/../../migrations/testing');
         }
 
-        $this->mergeConfigFrom(__DIR__ . '/../../config/user.php', 'user');
+        $this->mergeConfigFrom(__DIR__.'/../../config/user.php', 'user');
     }
 
     public function register(): void

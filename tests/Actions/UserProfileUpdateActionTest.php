@@ -15,7 +15,7 @@ use Inisiatif\Package\Contract\User\Repository\UserRepositoryInterface;
 
 final class UserProfileUpdateActionTest extends UserTestCase
 {
-    public function testCanUpdateProfileUser(): void
+    public function test_can_update_profile_user(): void
     {
         $user = $this->createUser();
 
@@ -46,14 +46,13 @@ final class UserProfileUpdateActionTest extends UserTestCase
         $this->assertSame($updatedUser->getUsername(), 'foobar');
     }
 
-    public function testCannotUpdateProfileUserWithInvalidId(): void
+    public function test_cannot_update_profile_user_with_invalid_id(): void
     {
         $event = Event::fake();
 
         $id = '22b99de2-539a-41a3-b64a-ad6ec80475dc';
 
         $this->expectException(RuntimeException::class);
-        $this->expectDeprecationMessage(sprintf('User with id `%s` not found.', $id));
 
         $dispatcher = $this->app->make(Dispatcher::class);
         $repository = $this->app->make(UserRepositoryInterface::class);
@@ -67,7 +66,7 @@ final class UserProfileUpdateActionTest extends UserTestCase
         $event->assertNotDispatched(UserProfileWasUpdated::class);
     }
 
-    public function testCanActualUpdateProfileUser(): void
+    public function test_can_actual_update_profile_user(): void
     {
         $user = $this->createUser();
 

@@ -17,9 +17,10 @@ use Inisiatif\Package\Contract\User\Repository\UserRepositoryInterface;
 
 final class UserCreateActionTest extends UserTestCase
 {
-    public function testCanCreateUser(): void
+    public function test_can_create_user(): void
     {
-        $user = UserBuilder::makeFromArray(new class() extends AbstractUser {
+        $user = UserBuilder::makeFromArray(new class() extends AbstractUser
+        {
         }, [
             'name' => 'foo bar',
             'email' => 'bar@foo.com',
@@ -48,7 +49,7 @@ final class UserCreateActionTest extends UserTestCase
         $this->assertTrue(password_verify(md5('secret'), $user->getPassword()));
     }
 
-    public function testCanActualCreateUser(): void
+    public function test_can_actual_create_user(): void
     {
         $model = UserModel::fromArray([
             'name' => 'foo bar',

@@ -6,10 +6,11 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-return new class() extends Migration {
+return new class() extends Migration
+{
     public function up(): void
     {
-        Schema::create('employees', function (Blueprint $table): void {
+        Schema::create('employees', static function (Blueprint $table): void {
             $table->uuid('id')->primary();
 
             $table->string('nip', 36)->unique();

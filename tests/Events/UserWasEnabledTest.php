@@ -12,7 +12,7 @@ use Inisiatif\Package\Contract\User\Model\UserInterface;
 
 final class UserWasEnabledTest extends UserTestCase
 {
-    public function testCanCreateEventObject(): void
+    public function test_can_create_event_object(): void
     {
         $user = new UserModel();
 

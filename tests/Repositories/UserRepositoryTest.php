@@ -11,7 +11,7 @@ use Inisiatif\Package\Contract\User\Model\UserInterface;
 
 final class UserRepositoryTest extends UserTestCase
 {
-    public function testCanFindUsingEmailOrUsername(): void
+    public function test_can_find_using_email_or_username(): void
     {
         $this->createUser();
 

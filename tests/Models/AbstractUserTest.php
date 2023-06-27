@@ -12,9 +12,10 @@ use Inisiatif\Package\Contract\Common\Concern\ToggleAwareInterface;
 
 final class AbstractUserTest extends UserTestCase
 {
-    public function testCanCreateUserObject(): void
+    public function test_can_create_user_object(): void
     {
-        $user = new class() extends AbstractUser {
+        $user = new class() extends AbstractUser
+        {
         };
 
         $user->setId('6f16bc0a-84f0-4ac6-b4ec-9430dd5d48de');

@@ -5,18 +5,15 @@ declare(strict_types=1);
 namespace Inisiatif\Package\User\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Inisiatif\Package\Division\Models\Division;
 use Inisiatif\Package\Common\Concerns\HasBranch;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Inisiatif\Package\Common\Concerns\UuidPrimaryKey;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Inisiatif\Package\Common\Contracts\HasBranchInterface;
 use Inisiatif\Package\Contract\Common\Model\ResourceInterface;
 
 final class Employee extends Model implements HasBranchInterface, ResourceInterface
 {
     use HasBranch;
-
     use UuidPrimaryKey;
 
     public function user(): MorphOne
@@ -29,10 +26,5 @@ final class Employee extends Model implements HasBranchInterface, ResourceInterf
     public function getTable()
     {
         return \config('user.table_names.employees', parent::getTable());
-    }
-
-    public function divisions(): BelongsToMany
-    {
-        return $this->belongsToMany(Division::class, 'division_employees')->withoutGlobalScopes();
     }
 }

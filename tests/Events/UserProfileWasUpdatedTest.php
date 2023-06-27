@@ -12,7 +12,7 @@ use Inisiatif\Package\User\Events\UserProfileWasUpdated;
 
 final class UserProfileWasUpdatedTest extends UserTestCase
 {
-    public function testCanCreateEventObject(): void
+    public function test_can_create_event_object(): void
     {
         $user = new UserModel();
 

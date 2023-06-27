@@ -17,9 +17,10 @@ use Inisiatif\Package\Contract\User\Repository\UserRepositoryInterface;
 
 final class ChangePasswordActionTest extends UserTestCase
 {
-    public function testCanChangePassword(): void
+    public function test_can_change_password(): void
     {
-        $user = new class() extends AbstractUser {
+        $user = new class() extends AbstractUser
+        {
         };
 
         $dispatcher = m::mock(Dispatcher::class);
@@ -50,7 +51,7 @@ final class ChangePasswordActionTest extends UserTestCase
         $this->assertSame($user->getPassword(), $hasherText);
     }
 
-    public function testCanActualChangeUserPassword(): void
+    public function test_can_actual_change_user_password(): void
     {
         $user = $this->createUser();
 

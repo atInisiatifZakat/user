@@ -12,7 +12,7 @@ use Inisiatif\Package\Contract\User\Model\LoginableAwareInterface;
 
 final class UserBuilderTest extends UserTestCase
 {
-    public function testCanCreateObjectUserFromArray(): void
+    public function test_can_create_object_user_from_array(): void
     {
         $user = UserBuilder::makeFromArray(new UserModel(), [
             'name' => 'foo bar',
@@ -27,7 +27,7 @@ final class UserBuilderTest extends UserTestCase
         $this->assertTrue(password_verify(md5('secret'), $user->getPassword()));
     }
 
-    public function testCanCreateObjectUserFromRequest(): void
+    public function test_can_create_object_user_from_request(): void
     {
         $request = new Request([
             'name' => 'foo bar',
