@@ -10,7 +10,7 @@ return new class() extends Migration
 {
     public function up(): void
     {
-        Schema::create('employees', static function (Blueprint $table): void {
+        Schema::create(\config('user.table_names.employees'), static function (Blueprint $table): void {
             $table->uuid('id')->primary();
 
             $table->string('nip', 36)->unique();
@@ -26,7 +26,7 @@ return new class() extends Migration
             $table->timestamps();
         });
 
-        Schema::create('volunteers', function (Blueprint $table): void {
+        Schema::create(\config('user.table_names.volunteers'), static function (Blueprint $table): void {
             $table->uuid('id')->primary();
 
             $table->foreignUuid('employee_id');

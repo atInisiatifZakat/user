@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="5.13.0@a0a9c27630bcf8301ee78cb06741d2907d8c9fef">
+  <file src="src/Actions/NewUserToken.php">
+    <PossiblyUnusedMethod>
+      <code>__construct</code>
+    </PossiblyUnusedMethod>
+    <UndefinedInterfaceMethod>
+      <code>attempt</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="src/Http/Controllers/ProfileController.php">
+    <PossiblyUnusedReturnValue>
+      <code>UserResource</code>
+    </PossiblyUnusedReturnValue>
+  </file>
+  <file src="src/Http/Controllers/TokenAuthController.php">
+    <PossiblyUnusedReturnValue>
+      <code>JsonResource</code>
+      <code>JsonResponse</code>
+    </PossiblyUnusedReturnValue>
+  </file>
+  <file src="src/Http/Controllers/UserTokenController.php">
+    <PossiblyUnusedReturnValue>
+      <code>JsonResponse</code>
+      <code>TokenResource</code>
+    </PossiblyUnusedReturnValue>
+  </file>
+  <file src="src/ModelRegistrar.php">
+    <PossiblyUnusedMethod>
+      <code>getBranchModel</code>
+      <code>getEmployeeModel</code>
+      <code>getVolunteerModel</code>
+    </PossiblyUnusedMethod>
+  </file>
   <file src="src/Models/Concern/HasUser.php">
     <PossiblyUnusedMethod>
       <code>user</code>
@@ -12,9 +44,9 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Models/PersonalAccessToken.php">
-    <UnusedClass>
-      <code>PersonalAccessToken</code>
-    </UnusedClass>
+    <PossiblyUnusedMethod>
+      <code>getAgent</code>
+    </PossiblyUnusedMethod>
   </file>
   <file src="src/Models/User.php">
     <PossiblyUnusedMethod>
@@ -29,15 +61,12 @@
       <code>employee</code>
     </PossiblyUnusedMethod>
   </file>
-  <file src="src/PackageRegistrar.php">
-    <PossiblyUnusedMethod>
-      <code>getBranchModel</code>
-      <code>getEmployeeModel</code>
-      <code>getUserModel</code>
-      <code>getVolunteerModel</code>
-    </PossiblyUnusedMethod>
+  <file src="src/Routes.php">
+    <UnusedClass>
+      <code>Routes</code>
+    </UnusedClass>
   </file>
-  <file src="src/Providers/UserServiceProvider.php">
+  <file src="src/UserServiceProvider.php">
     <UnusedClass>
       <code>UserServiceProvider</code>
     </UnusedClass>

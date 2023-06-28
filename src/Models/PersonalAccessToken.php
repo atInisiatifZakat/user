@@ -13,4 +13,17 @@ final class PersonalAccessToken extends SanctumPersonalAccessToken
         /** @var string */
         return \config('user.table_names.personal_access_tokens', parent::getTable());
     }
+
+    public function getAgent(): ?array
+    {
+        $name = $this->getAttribute('name');
+
+        if (! str_contains($name, '|')) {
+            return null;
+        }
+
+        [$device, $platform, $browser, $ip] = \explode('|', $name, 4);
+
+        return \compact('device', 'platform', 'browser', 'ip');
+    }
 }

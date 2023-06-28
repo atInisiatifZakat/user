@@ -10,7 +10,7 @@ return new class() extends Migration
 {
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table): void {
+        Schema::create(\config('user.table_names.users'), static function (Blueprint $table): void {
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('username', 100)->unique();

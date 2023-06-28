@@ -1,8 +1,12 @@
 <?php
 
 return [
+    'migration' => env('INISIATIF_USER_RUNNING_MIGRATION', false),
+
     'table_names' => [
         'users' => env('USER_TABLE_NAME_USERS', 'users'),
+
+        'branches' => env('USER_TABLE_NAME_BRANCHES', 'branches'),
 
         'employees' => env('USER_TABLE_NAME_EMPLOYEES', 'employees'),
 

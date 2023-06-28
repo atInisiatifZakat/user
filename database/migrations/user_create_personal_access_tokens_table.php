@@ -10,13 +10,14 @@ return new class() extends Migration
 {
     public function up(): void
     {
-        Schema::create('personal_access_tokens', static function (Blueprint $table): void {
-            $table->bigIncrements('id');
+        Schema::create(\config('user.table_names.personal_access_tokens'), static function (Blueprint $table): void {
+            $table->id();
             $table->uuidMorphs('tokenable');
             $table->string('name');
             $table->string('token', 64)->unique();
             $table->text('abilities')->nullable();
             $table->timestamp('last_used_at')->nullable();
+            $table->timestamp('expires_at')->nullable();
             $table->timestamps();
         });
     }
