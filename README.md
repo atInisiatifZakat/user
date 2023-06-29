@@ -88,6 +88,14 @@ Paket ini mengekspose route api yang bisa di gunakan untuk melakukan
 sebelum menggunakan route api, sebelumnya tambahkan kode berikut pada file route api,
 biasanya ada di `routes/api.php`
 
+```php
+use Inisiatif\Package\User;
+
+User\Routes::authToken();
+User\Routes::userToken();
+User\Routes::userProfile();
+```
+
 ### Rest API
 
 1. POST `/auth/token` : untuk login dan membuat token baru, secara default token di buat dengan `expired_at` `null`
