@@ -6,14 +6,15 @@ namespace Inisiatif\Package\User\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Inisiatif\Package\User\Actions\ListUserToken;
 use Inisiatif\Package\User\Http\Resources\TokenResource;
 
 final class UserTokenController
 {
-    public function index(Request $request, ListUserToken $token): TokenResource
+    public function index(Request $request, ListUserToken $token): JsonResource
     {
-        return TokenResource::make(
+        return TokenResource::collection(
             $token->fromRequest($request)
         );
     }

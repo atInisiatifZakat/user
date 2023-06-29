@@ -16,13 +16,12 @@
   <file src="src/Http/Controllers/TokenAuthController.php">
     <PossiblyUnusedReturnValue>
       <code>JsonResource</code>
-      <code>JsonResponse</code>
     </PossiblyUnusedReturnValue>
   </file>
   <file src="src/Http/Controllers/UserTokenController.php">
     <PossiblyUnusedReturnValue>
+      <code>JsonResource</code>
       <code>JsonResponse</code>
-      <code>TokenResource</code>
     </PossiblyUnusedReturnValue>
   </file>
   <file src="src/ModelRegistrar.php">

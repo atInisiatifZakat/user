@@ -27,8 +27,8 @@ final class Routes
     public static function userToken(): void
     {
         Route::middleware('auth:sanctum')->group(function (Router $router): void {
-            $router->get('/token', [UserTokenController::class, 'index']);
-            $router->delete('/token/{tokenId}', [UserTokenController::class, 'destroy']);
+            $router->get('/user-token', [UserTokenController::class, 'index']);
+            $router->delete('/user-token/{tokenId}', [UserTokenController::class, 'destroy']);
         });
     }
 }
