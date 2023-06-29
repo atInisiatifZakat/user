@@ -54,7 +54,7 @@ final class UserServiceProvider extends PackageServiceProvider
         });
 
         $this->package->runsMigrations(
-            \config('user.migration')
+            (bool) \config('user.migration')
         );
     }
 }
