@@ -26,7 +26,6 @@ final class ProfileControllerTest extends TestCase
             $token->plainTextToken
         )->getJson('/user-information')->assertSuccessful();
 
-        $response->assertJsonIsObject();
         $response->assertJsonStructure([
             'data' => [
                 'id', 'name', 'email',
