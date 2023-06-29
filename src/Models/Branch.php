@@ -11,6 +11,10 @@ final class Branch extends Model
 {
     use HasUlids;
 
+    protected $casts = [
+        'is_head_office' => 'boolean',
+    ];
+
     public function getTable(): string
     {
         /** @var string */

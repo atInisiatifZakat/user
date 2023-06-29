@@ -11,6 +11,7 @@ use Inisiatif\Package\User\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Inisiatif\Package\User\Factories\BranchFactory;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Inisiatif\Package\User\Factories\EmployeeFactory;
 use Inisiatif\Package\User\Models\PersonalAccessToken;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -47,6 +48,7 @@ final class UserServiceProvider extends PackageServiceProvider
             return match (\get_class($factory)) {
                 UserFactory::class => ModelRegistrar::getUserModelClass(),
                 BranchFactory::class => ModelRegistrar::getBranchModelClass(),
+                EmployeeFactory::class => ModelRegistrar::getEmployeeModelClass(),
                 default => null,
             };
         });

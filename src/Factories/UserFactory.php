@@ -24,4 +24,14 @@ final class UserFactory extends Factory
             'loginable_type' => $this->faker->randomElement(['EMPLOYEE', 'VOLUNTEER']),
         ];
     }
+
+    public function employee(): self
+    {
+        return $this->state(function () {
+            return [
+                'loginable_id' => EmployeeFactory::new()->create()->getKey(),
+                'loginable_type' => 'EMPLOYEE',
+            ];
+        });
+    }
 }
