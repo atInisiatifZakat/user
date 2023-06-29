@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Inisiatif\Package\User\Tests\Http\Controllers;
 
 use Inisiatif\Package\User\Models\User;
@@ -7,7 +9,7 @@ use Inisiatif\Package\User\Tests\TestCase;
 use Inisiatif\Package\User\Factories\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ProfileControllerTest extends TestCase
+final class ProfileControllerTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -34,7 +36,7 @@ class ProfileControllerTest extends TestCase
                         'id', 'name', 'is_head_office',
                     ],
                 ],
-            ]
+            ],
         ]);
 
         $this->assertSame($user->getKey(), $response->json('data.id'));
