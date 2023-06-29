@@ -4,15 +4,15 @@ return [
     'migration' => env('INISIATIF_USER_RUNNING_MIGRATION', false),
 
     'table_names' => [
-        'users' => env('USER_TABLE_NAME_USERS', 'users'),
+        'users' => env('INISIATIF_USER_TABLE_NAME_USERS', 'users'),
 
-        'branches' => env('USER_TABLE_NAME_BRANCHES', 'branches'),
+        'branches' => env('INISIATIF_USER_TABLE_NAME_BRANCHES', 'branches'),
 
-        'employees' => env('USER_TABLE_NAME_EMPLOYEES', 'employees'),
+        'employees' => env('INISIATIF_USER_TABLE_NAME_EMPLOYEES', 'employees'),
 
-        'volunteers' => env('USER_TABLE_NAME_VOLUNTEERS', 'volunteers'),
+        'volunteers' => env('INISIATIF_USER_TABLE_NAME_VOLUNTEERS', 'volunteers'),
 
-        'personal_access_tokens' => env('USER_TABLE_NAME_PERSONAL_ACCESS_TOKENS', 'personal_access_tokens')
+        'personal_access_tokens' => env('INISIATIF_USER_TABLE_NAME_PERSONAL_ACCESS_TOKENS', 'personal_access_tokens')
     ],
 
     'models' => [
