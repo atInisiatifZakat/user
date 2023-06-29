@@ -32,6 +32,13 @@
         "test": "vendor/bin/phpunit",
         "format": "vendor/bin/pint"
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Inisiatif\\Package\\User\\PackageServiceProvider"
+            ]
+        }
+    },
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
