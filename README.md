@@ -79,6 +79,12 @@ return [
 
 ## Penggunaan
 
+#### Ubah `user` model auth
+
+Ubah config di `auth.providers.users.model` menjadi `Inisiatif\Package\User\Models\User::class`
+
+#### Rest API
+
 Paket ini mengekspose route api yang bisa di gunakan untuk melakukan 
 
 1. Login dan Logout menggunakan token
@@ -95,8 +101,6 @@ User\Routes::authToken();
 User\Routes::userToken();
 User\Routes::userProfile();
 ```
-
-### Rest API
 
 1. POST `/auth/token` : untuk login dan membuat token baru, secara default token di buat dengan `expired_at` `null`
 2. DELETE `/auth/token` : untuk logout / hapus token yang sedang di gunakan
