@@ -27,6 +27,6 @@ return new class() extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists(\config('common.tables.branch'));
+        Schema::dropIfExists(\config('user.table_names.branches'));
     }
 };
