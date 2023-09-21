@@ -1,13 +1,44 @@
 <?php
 
 return [
+    /**
+     * Migrations
+     * -----------------------------------------------------------------------------------------------------------------
+     * Konfigurasi apakah paket file migration pada paket ini ikut di jalankan saat user menjalankan perintah
+     * `php artisan migrate` tanpa harus mempublish file migration-nya
+     */
+    'migration' => env('INISIATIF_USER_RUNNING_MIGRATION', false),
+
+    /**
+     * Table Names
+     * -----------------------------------------------------------------------------------------------------------------
+     * Konfigurasi untuk nama tabel masing - masih model. Untuk postgres dengan beda schema bisa menggunakan dot, contah
+     * `public.users` dan seterusnya
+     */
     'table_names' => [
-        'users' => env('USER_TABLE_NAME_USERS', 'users'),
+        'users' => env('INISIATIF_USER_TABLE_NAME_USERS', 'users'),
 
-        'employees' => env('USER_TABLE_NAME_EMPLOYEES', 'employees'),
+        'branches' => env('INISIATIF_USER_TABLE_NAME_BRANCHES', 'branches'),
 
-        'volunteers' => env('USER_TABLE_NAME_VOLUNTEERS', 'volunteers'),
+        'employees' => env('INISIATIF_USER_TABLE_NAME_EMPLOYEES', 'employees'),
 
-        'personal_access_tokens' => env('USER_TABLE_NAME_PERSONAL_ACCESS_TOKENS', 'personal_access_tokens')
+        'volunteers' => env('INISIATIF_USER_TABLE_NAME_VOLUNTEERS', 'volunteers'),
+
+        'personal_access_tokens' => env('INISIATIF_USER_TABLE_NAME_PERSONAL_ACCESS_TOKENS', 'personal_access_tokens')
     ],
+
+    /**
+     * Models
+     * -----------------------------------------------------------------------------------------------------------------
+     * Ubah value ini untuk mengganti model yang digunakan
+     */
+    'models' => [
+        'user' => Inisiatif\Package\User\Models\User::class,
+
+        'branch' => Inisiatif\Package\User\Models\Branch::class,
+
+        'employee' => Inisiatif\Package\User\Models\Employee::class,
+
+        'volunteer' => Inisiatif\Package\User\Models\Volunteer::class,
+    ]
 ];
