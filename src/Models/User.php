@@ -12,9 +12,9 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 final class User extends Auth\User
 {
+    use HasApiTokens;
     use HasUuids;
     use Notifiable;
-    use HasApiTokens;
 
     public function getTable(): string
     {
