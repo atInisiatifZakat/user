@@ -40,5 +40,10 @@ return [
         'employee' => Inisiatif\Package\User\Models\Employee::class,
 
         'volunteer' => Inisiatif\Package\User\Models\Volunteer::class,
-    ]
+    ],
+
+    /**
+     * Add hashing password using `md5` before call `attempt` in guard
+     */
+    'hashing_password_before_attempt' => 'true',
 ];
