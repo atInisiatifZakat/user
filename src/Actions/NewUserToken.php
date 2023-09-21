@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Inisiatif\Package\User\Actions;
 
 use DateTimeInterface;
-use Jenssegers\Agent\Agent;
 use Illuminate\Support\Arr;
+use Jenssegers\Agent\Agent;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\NewAccessToken;
 use Illuminate\Contracts\Auth\Factory;
@@ -22,7 +22,7 @@ final class NewUserToken
     {
         $guard = $this->auth->guard();
 
-        if(\config('user.hashing_password_before_attempt', true)) {
+        if (\config('user.hashing_password_before_attempt', true)) {
             $plainPassword = Arr::get($credentials, 'password');
 
             Arr::set($credentials, 'password', \md5($plainPassword));

@@ -71,7 +71,7 @@ final class AuthTokenControllerTest extends TestCase
         $user = UserFactory::new([
             'password' => \bcrypt(
                 \md5('password')
-            )
+            ),
         ])->createOne();
 
         $response = $this->postJson('/auth/token', [
@@ -91,7 +91,7 @@ final class AuthTokenControllerTest extends TestCase
         config()->set('user.hashing_password_before_attempt', true);
 
         $user = UserFactory::new([
-            'password' => \bcrypt('password')
+            'password' => \bcrypt('password'),
         ])->createOne();
 
         $response = $this->postJson('/auth/token', [
