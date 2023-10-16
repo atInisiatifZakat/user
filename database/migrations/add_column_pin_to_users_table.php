@@ -11,7 +11,7 @@ return new class() extends Migration
     public function up(): void
     {
         Schema::table(\config('user.table_names.users'), static function (Blueprint $table): void {
-            $table->string('pin');
+            $table->string('pin')->nullable();
         });
     }
 
