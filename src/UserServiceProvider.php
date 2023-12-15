@@ -26,7 +26,6 @@ final class UserServiceProvider extends PackageServiceProvider
                 'create_employees_and_volunteers_table',
                 'create_users_table',
                 'user_create_personal_access_tokens_table',
-                'add_column_intranet_id_to_branch_table',
             ]);
     }
 

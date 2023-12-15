@@ -23,9 +23,9 @@ return new class() extends Migration
 
             $table->timestamps();
 
-            if(Schema::hasColumn(\config('user.table_names.branches'), 'intranet_id')){
+            if(Schema::hasColumn(\config('user.table_names.branches'), 'intranet_id') !== true){
                 Schema::table(\config('user.table_names.branches'), function (Blueprint $table){
-                    $table->dropColumn('intranet_id');
+                    $table->string('intranet_id')->nullable();
                 });
             }
         });
