@@ -22,6 +22,10 @@ return new class() extends Migration
             $table->uuid('parent_id')->nullable();
 
             $table->timestamps();
+
+            if(Schema::hasTable(\config('user.table_names.branches'))){
+                $table->string('intranet_id')->nullable();
+            }
         });
     }
 
