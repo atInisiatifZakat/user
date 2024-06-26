@@ -7,6 +7,14 @@ pada aplikasi yang di buat.
 
 > v2 di buat ulang dari v1 dan tidak ada jalan migrasi dari v1 ke v2 harus rewrite
 
+## Version map
+
+
+| Version | PHP      | Laravel    |
+|---------|----------|------------|
+| 2.x     | 8.1, 8.2 | 9, 10      |
+| 3.x     | 8.2, 8.3 | 9, 10, 11  |
+
 ## Install
 
 Untuk menginstall paket ini bisa menggunakan `composer` dengan menjalankan perintah berikut
