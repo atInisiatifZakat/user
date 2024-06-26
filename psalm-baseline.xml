@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.13.1@086b94371304750d1c673315321a55d15fc59015">
+<files psalm-version="5.15.0@5c774aca4746caf3d239d9c8cadb9f882ca29352">
+  <file src="src/Actions/ConfirmIdentificationNumber.php">
+    <UnusedClass>
+      <code>ConfirmIdentificationNumber</code>
+    </UnusedClass>
+  </file>
+  <file src="src/Actions/ConfirmPassword.php">
+    <PossiblyUnusedMethod>
+      <code>__construct</code>
+    </PossiblyUnusedMethod>
+  </file>
   <file src="src/Actions/NewUserToken.php">
     <PossiblyUnusedMethod>
       <code>__construct</code>
@@ -12,6 +22,11 @@
     <PossiblyUnusedMethod>
       <code>employee</code>
     </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Http/Controllers/IdentificationNumberController.php">
+    <UnusedClass>
+      <code>IdentificationNumberController</code>
+    </UnusedClass>
   </file>
   <file src="src/Http/Controllers/ProfileController.php">
     <PossiblyUnusedReturnValue>
@@ -68,6 +83,14 @@
   <file src="src/Routes.php">
     <UnusedClass>
       <code>Routes</code>
+    </UnusedClass>
+  </file>
+  <file src="src/SanctumStateful.php">
+    <PossiblyInvalidArgument>
+      <code>$subdomains</code>
+    </PossiblyInvalidArgument>
+    <UnusedClass>
+      <code>SanctumStateful</code>
     </UnusedClass>
   </file>
   <file src="src/UserServiceProvider.php">

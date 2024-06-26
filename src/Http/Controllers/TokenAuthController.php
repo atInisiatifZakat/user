@@ -13,6 +13,9 @@ use Inisiatif\Package\User\Actions\DeleteCurrentToken;
 
 final class TokenAuthController
 {
+    /**
+     * @throws ValidationException
+     */
     public function store(Request $request, NewUserToken $token): JsonResource
     {
         $request->validate([

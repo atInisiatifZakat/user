@@ -44,6 +44,7 @@ abstract class TestCase extends Testbench\TestCase
             Routes::userToken();
             Routes::authToken();
             Routes::userProfile();
+            Routes::personalIdentification();
         });
     }
 

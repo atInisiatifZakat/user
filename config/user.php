@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     /**
      * Migrations
@@ -24,7 +26,7 @@ return [
 
         'volunteers' => env('INISIATIF_USER_TABLE_NAME_VOLUNTEERS', 'volunteers'),
 
-        'personal_access_tokens' => env('INISIATIF_USER_TABLE_NAME_PERSONAL_ACCESS_TOKENS', 'personal_access_tokens')
+        'personal_access_tokens' => env('INISIATIF_USER_TABLE_NAME_PERSONAL_ACCESS_TOKENS', 'personal_access_tokens'),
     ],
 
     /**
@@ -45,5 +47,5 @@ return [
     /**
      * Add hashing password using `md5` before call `attempt` in guard
      */
-    'hashing_password_before_attempt' => 'true',
+    'hashing_password_before_attempt' => true,
 ];

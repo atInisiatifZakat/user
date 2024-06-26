@@ -12,13 +12,7 @@ return new class() extends Migration
     {
         Schema::table(\config('user.table_names.users'), static function (Blueprint $table): void {
             $table->string('pin')->nullable();
-        });
-    }
-
-    public function down(): void
-    {
-        Schema::table(\config('user.table_names.users'), function (Blueprint $table): void {
-            $table->dropColumn(['pin']);
+            $table->timestamp('pin_last_used_at')->nullable();
         });
     }
 };
