@@ -23,7 +23,7 @@ return new class() extends Migration
 
             $table->timestamps();
 
-            if(Schema::hasColumn(\config('user.table_names.branches'), 'intranet_id') !== true){
+            if (Schema::hasColumn(\config('user.table_names.branches'), 'intranet_id') !== true) {
                 $table->string('intranet_id')->nullable();
             }
         });

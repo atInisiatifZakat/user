@@ -15,8 +15,7 @@ final class NewUserToken
 {
     public function __construct(
         private readonly Factory $auth
-    ) {
-    }
+    ) {}
 
     public function handle(array $credentials, string $tokenName, array $abilities = ['*'], ?DateTimeInterface $expiresAt = null): ?NewAccessToken
     {

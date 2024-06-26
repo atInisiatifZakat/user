@@ -34,7 +34,7 @@ final class UserServiceProvider extends PackageServiceProvider
         if (method_exists(Sanctum::class, 'ignoreMigrations')) {
             Sanctum::ignoreMigrations();
         }
-        
+
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
     }
 
