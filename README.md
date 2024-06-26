@@ -95,6 +95,7 @@ Paket ini mengekspose route api yang bisa di gunakan untuk melakukan
 1. Login dan Logout menggunakan token
 2. List dan delete user token
 3. Menampilkan profile user
+4. Update `pin` user
 
 sebelum menggunakan route api, sebelumnya tambahkan kode berikut pada file route api,
 biasanya ada di `routes/api.php`
@@ -105,6 +106,7 @@ use Inisiatif\Package\User;
 User\Routes::authToken();
 User\Routes::userToken();
 User\Routes::userProfile();
+User\Routes::personalIdentification();
 ```
 
 1. POST `/auth/token` : untuk login dan membuat token baru, secara default token di buat dengan `expired_at` `null`
@@ -112,6 +114,7 @@ User\Routes::userProfile();
 3. GET `/user-token` : untuk menampilkan list token untuk user yang sedang login
 4. DELETE `/user-token/{tokenId}` : untuk mengapus token berdasarkan `tokenId`
 5. GET `/user-information` : untuk menampilkan informasi user yang sedang login
+6. PUT `/personal-identification-number` : untuk mengupdate `pin` user
 
 ## Testing
 ```bash
