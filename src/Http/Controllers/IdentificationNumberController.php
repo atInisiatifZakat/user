@@ -17,15 +17,14 @@ final class IdentificationNumberController
      */
     public function update(Request $request, ConfirmPassword $confirmPassword, UpdateIdentificationNumber $pin): JsonResponse
     {
+        $user = $request->user();
+
         $request->validate([
             'password' => ['required'],
-            'pin' => ['required', 'numeric', 'max:6', 'min:6', 'confirmed'],
+            'pin' => ['required', 'numeric', 'confirmed'],
         ]);
 
-        $confirm = $confirmPassword->handle(
-            $request->user(),
-            $request->string('password')->toString()
-        );
+        $confirm = $confirmPassword->handle($user, $request->string('password')->toString());
 
         if ($confirm === false) {
             throw ValidationException::withMessages([
@@ -35,7 +34,7 @@ final class IdentificationNumberController
             ]);
         }
 
-        $pin->handle($request->user(), $request->string('pin')->toString());
+        $pin->handle($user, $request->string('pin')->toString());
 
         return new JsonResponse(null, 204);
     }

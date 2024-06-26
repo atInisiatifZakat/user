@@ -19,6 +19,8 @@ return new class() extends Migration
             $table->timestamp('deactivated_at')->nullable();
             $table->nullableUuidMorphs('loginable');
             $table->rememberToken();
+            $table->string('pin')->nullable();
+            $table->timestamp('pin_last_used_at')->nullable();
             $table->timestamps();
         });
     }

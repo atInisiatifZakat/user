@@ -7,12 +7,9 @@ namespace Inisiatif\Package\User\Tests\Http\Controllers;
 use Laravel\Sanctum\NewAccessToken;
 use Inisiatif\Package\User\Tests\TestCase;
 use Inisiatif\Package\User\Factories\UserFactory;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 final class AuthTokenControllerTest extends TestCase
 {
-    use RefreshDatabase;
-
     public function test_can_create_new_token(): void
     {
         config()->set('user.hashing_password_before_attempt', false);

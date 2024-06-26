@@ -22,11 +22,11 @@ final class UserServiceProvider extends PackageServiceProvider
         $package->name('user')
             ->hasConfigFile()
             ->hasMigrations([
-                'add_column_pin_to_users_table',
                 'create_branch_tables',
                 'create_employees_and_volunteers_table',
                 'create_users_table',
                 'user_create_personal_access_tokens_table',
+                'add_column_pin_to_users_table',
             ]);
     }
 

@@ -27,7 +27,8 @@ final class Routes
 
     public static function personalIdentification(): void
     {
-        Route::put('/personal-identification-number', [IdentificationNumberController::class, 'update']);
+        Route::middleware('auth:sanctum')
+            ->put('/personal-identification-number', [IdentificationNumberController::class, 'update']);
     }
 
     public static function userToken(): void

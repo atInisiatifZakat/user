@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace Inisiatif\Package\User\Actions;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
 use Inisiatif\Package\User\ModelRegistrar;
-use Illuminate\Contracts\Auth\StatefulGuard;
 
 final class ConfirmPassword
 {
-    public function __construct(private readonly StatefulGuard $guard) {}
-
     /**
      * @param  Model  $user
      */
@@ -27,9 +25,6 @@ final class ConfirmPassword
 
         $hashed = \config('user.hashing_password_before_attempt', true);
 
-        return $this->guard->validate([
-            'email' => $user->getAttribute('email'),
-            'password' => $hashed ? \md5($password) : $password,
-        ]);
+        return Hash::check($hashed ? \md5($password) : $password, $user->getAttribute('password'));
     }
 }
