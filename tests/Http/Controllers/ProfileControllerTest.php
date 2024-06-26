@@ -7,12 +7,9 @@ namespace Inisiatif\Package\User\Tests\Http\Controllers;
 use Inisiatif\Package\User\Models\User;
 use Inisiatif\Package\User\Tests\TestCase;
 use Inisiatif\Package\User\Factories\UserFactory;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 final class ProfileControllerTest extends TestCase
 {
-    use RefreshDatabase;
-
     public function test_can_show_user_profile(): void
     {
         $this->withoutExceptionHandling();

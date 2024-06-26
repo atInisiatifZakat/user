@@ -14,11 +14,13 @@ final class UserFactory extends Factory
 {
     public function definition(): array
     {
+        $hashed = \config('user.hashing_password_before_attempt', true);
+
         return [
             'name' => $this->faker->name(),
             'username' => $this->faker->safeEmail(),
             'email' => $this->faker->safeEmail(),
-            'password' => \bcrypt('password'),
+            'password' => \bcrypt($hashed ? \md5('password') : 'password'),
             'deactivated_at' => null,
             'loginable_id' => $this->faker->uuid(),
             'loginable_type' => $this->faker->randomElement(['EMPLOYEE', 'VOLUNTEER']),
