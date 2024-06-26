@@ -5,11 +5,6 @@
       <code><![CDATA[ConfirmIdentificationNumber]]></code>
     </UnusedClass>
   </file>
-  <file src="src/Actions/ConfirmPassword.php">
-    <PossiblyUnusedMethod>
-      <code><![CDATA[__construct]]></code>
-    </PossiblyUnusedMethod>
-  </file>
   <file src="src/Actions/NewUserToken.php">
     <PossiblyUnusedMethod>
       <code><![CDATA[__construct]]></code>
@@ -25,11 +20,11 @@
   </file>
   <file src="src/Http/Controllers/IdentificationNumberController.php">
     <ArgumentTypeCoercion>
-      <code><![CDATA[$request->user()]]></code>
+      <code><![CDATA[$user]]></code>
     </ArgumentTypeCoercion>
     <PossiblyNullArgument>
-      <code><![CDATA[$request->user()]]></code>
-      <code><![CDATA[$request->user()]]></code>
+      <code><![CDATA[$user]]></code>
+      <code><![CDATA[$user]]></code>
     </PossiblyNullArgument>
     <PossiblyUnusedMethod>
       <code><![CDATA[update]]></code>
