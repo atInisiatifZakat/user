@@ -78,7 +78,7 @@ return [
     /**
     * Add hashing password using `md5` before call `attempt` in guard 
     */
-    'hashing_password_before_attempt' => 'true',
+    'hashing_password_before_attempt' => true,
 ];
 ```
 
