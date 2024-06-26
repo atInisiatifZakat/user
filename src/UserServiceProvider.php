@@ -31,7 +31,10 @@ final class UserServiceProvider extends PackageServiceProvider
 
     public function registeringPackage(): void
     {
-        Sanctum::ignoreMigrations();
+        if (method_exists(Sanctum::class, 'ignoreMigrations')) {
+            Sanctum::ignoreMigrations();
+        }
+
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
     }
 
