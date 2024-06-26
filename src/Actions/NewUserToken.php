@@ -15,14 +15,13 @@ final class NewUserToken
 {
     public function __construct(
         private readonly Factory $auth
-    ) {
-    }
+    ) {}
 
     /**
      * @param  array<string, string>  $credentials
      * @param  array<string>  $abilities
      */
-    public function handle(array $credentials, string $tokenName, array $abilities = ['*'], DateTimeInterface $expiresAt = null): ?NewAccessToken
+    public function handle(array $credentials, string $tokenName, array $abilities = ['*'], ?DateTimeInterface $expiresAt = null): ?NewAccessToken
     {
         $guard = $this->auth->guard();
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Inisiatif\Package\User\Tests\Http\Controllers;
 
 use Illuminate\Support\Facades\Hash;

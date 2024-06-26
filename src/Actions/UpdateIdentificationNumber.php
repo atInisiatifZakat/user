@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Inisiatif\Package\User\Actions;
 
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Eloquent\Model;
 use Inisiatif\Package\User\Models\User;
 use Inisiatif\Package\User\ModelRegistrar;
 

@@ -10,9 +10,7 @@ use Illuminate\Contracts\Auth\StatefulGuard;
 
 final class ConfirmPassword
 {
-    public function __construct(private readonly StatefulGuard $guard)
-    {
-    }
+    public function __construct(private readonly StatefulGuard $guard) {}
 
     /**
      * @param  Model  $user
