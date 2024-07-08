@@ -48,4 +48,17 @@ return [
      * Add hashing password using `md5` before call `attempt` in guard
      */
     'hashing_password_before_attempt' => true,
+
+
+    /**
+     * Pin
+     * -----------------------------------------------------------------------------------------------------------------
+     * Menentukan berapa kali boleh salah memasukkan PIN 
+     * dan waktu tunggu setelah mencapai batas maksimal memasukan pin yang salah.
+     */
+
+    'pin' => [
+        'max_attempts' => env('INISIATIF_USER_PIN_MAX_ATTEMPTS', 3),
+        'decay_minutes' => env('INISIATIF_USER_PIN_DECAY_MINUTES', 30),
+    ]
 ];
