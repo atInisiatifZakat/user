@@ -7,6 +7,7 @@ namespace Inisiatif\Package\User\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Inisiatif\Package\User\Actions\ConfirmPassword;
 use Inisiatif\Package\User\Actions\UpdateIdentificationNumber;
@@ -14,89 +15,73 @@ use Inisiatif\Package\User\Events\AuthenticationAttemptsExceeded;
 
 final class IdentificationNumberController
 {
-    private $maxAttempts;
-    private $decayMinutes;
-
-    public function __construct()
-    {
-        $this->maxAttempts = \config('user.pin.max_attempts', 3);
-        $this->decayMinutes = \config('user.pin.max_decay_minutes', 30);
-    }
-
     /**
      * @throws ValidationException
      */
     public function update(Request $request, ConfirmPassword $confirmPassword, UpdateIdentificationNumber $pin): JsonResponse
     {
+        $maxAttempts = \config('user.pin.max_attempts', 3);
+        $decayMinutes = \config('user.pin.max_decay_minutes', 30);
+
         $user = $request->user();
         $key = 'change-pin-attempts:' . $user->id;
 
-        try {
-            if (RateLimiter::tooManyAttempts($key, $this->maxAttempts)) {
-                $seconds = RateLimiter::availableIn($key);
-                $minutes = ceil($seconds / 60);
-                throw ValidationException::withMessages([
-                    'attempt' => [
-                        "Too many attempts. Please try again in $minutes minutes.",
-                    ],
-                ]);
-            }
 
-            $request->validate([
-                'password' => ['required'],
-                'pin' => ['required', 'numeric', 'confirmed'],
-            ]);
+        if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
+            $seconds = RateLimiter::availableIn($key);
+            $minutes = ceil($seconds / 60);
 
-            $confirm = $confirmPassword->handle($user, $request->string('password')->toString());
+            return response()->json([
+                'message' => "Terlalu banyak percobaan untuk memasukan password. Mohon tunggu $minutes menit.",
+                'type' => 'rate_limit'
+            ], 429);
+        }
 
-            if ($confirm === false) {
-                RateLimiter::hit($key, $this->decayMinutes * 60);
+        $validator = Validator::make($request->all(), [
+            'password' => ['required'],
+            'pin' => ['required', 'numeric', 'confirmed', 'digits:6'],
+        ]);
 
-                if (RateLimiter::tooManyAttempts($key, $this->maxAttempts)) {
-                    event(new AuthenticationAttemptsExceeded($user));
-                }
+        if ($validator->fails()) {
+            $errors = $validator->errors();
 
-                throw ValidationException::withMessages([
-                    'password' => [
-                        'Password yang anda masukkan salah.',
-                    ],
-                ]);
-            }
-
-            RateLimiter::clear($key);
-
-            $pin->handle($user, $request->string('pin')->toString());
-
-            return new JsonResponse([
-                'message' => 'Pin Berhasil Diubah',
-                'type' => 'change_pin_success'
-            ], 204);
-        } catch (ValidationException $e) {
-            $errors = $e->errors();
-
-            if (isset($errors['pin'])) {
+            if ($errors->has('password')) {
                 return response()->json([
-                    'message' => 'PIN dan konfirmasi PIN tidak sama.',
-                    'type' => 'pin_confirmation_error'
-                ], 422);
-            }
-
-            if (isset($errors['attempt'])) {
-                $seconds = RateLimiter::availableIn($key);
-                $minutes = ceil($seconds / 60);
-
-                return response()->json([
-                    'message' => $errors['attempt'],
-                    'type' => 'rate_limit'
-                ], 429);
-            }
-
-            if (isset($errors['password'])) {
-                return response()->json([
-                    'message' => $errors['password'],
+                    'message' => 'Password wajib dimasukan.',
                     'type' => 'password_error'
                 ], 422);
             }
+
+            if ($errors->has('pin')) {
+                return response()->json([
+                    'message' => 'Pin dan konfirmasi pin harus sama dan tidak boleh kurang dari 6 digit.',
+                    'type' => 'pin_error'
+                ], 422);
+            }
         }
+
+        $confirm = $confirmPassword->handle($user, $request->string('password')->toString());
+
+        if ($confirm === false) {
+            RateLimiter::hit($key, $decayMinutes * 60);
+
+            if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
+                event(new AuthenticationAttemptsExceeded($user));
+            }
+
+            return response()->json([
+                'message' => "Password yang anda masukan salah",
+                'type' => 'password_error'
+            ], 422);
+        }
+
+        RateLimiter::clear($key);
+
+        $pin->handle($user, $request->string('pin')->toString());
+
+        return new JsonResponse([
+            'message' => 'Pin Berhasil Diubah',
+            'type' => 'change_pin_success'
+        ], 204);
     }
 }

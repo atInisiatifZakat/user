@@ -95,6 +95,24 @@ final class IdentificationNumberControllerTest extends TestCase
             'password' => 'password',
         ])->json();
 
-        $this->assertEquals('pin_confirmation_error', $response['type']);
+        $this->assertEquals('pin_error', $response['type']);
+    }
+
+    public function test_pin_less_than_six(): void
+    {
+        /** @var User $user */
+        $user = UserFactory::new()->createOne([
+            'pin' => Hash::make('123456'),
+        ]);
+
+        $token = $user->createToken('testing');
+
+        $response = $this->withToken($token->plainTextToken)->putJson('/personal-identification-number', [
+            'pin' => '1234',
+            'pin_confirmation' => '1234',
+            'password' => 'password',
+        ])->json();
+
+        $this->assertEquals('pin_error', $response['type']);
     }
 }
