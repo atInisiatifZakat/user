@@ -10,10 +10,17 @@ class AuthenticationAttemptsExceeded
 {
     use Dispatchable, SerializesModels;
 
+    /**
+     * @var Model $user
+     **/
     public $user;
+
 
     public function __construct($user)
     {
+        /**
+         * @var Model $user
+         **/
         $this->user = $user;
     }
 }

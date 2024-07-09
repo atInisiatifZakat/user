@@ -24,14 +24,14 @@ final class IdentificationNumberController
         $decayMinutes = \config('user.pin.max_decay_minutes', 30);
 
         $user = $request->user();
-        $key = 'change-pin-attempts:' . $user->id;
+        $key = 'change-pin-attempts:' . $user->getAuthIdentifier();
 
 
         if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
             $seconds = RateLimiter::availableIn($key);
             $minutes = ceil($seconds / 60);
 
-            return response()->json([
+            return new JsonResponse([
                 'message' => "Terlalu banyak percobaan untuk memasukan password. Mohon tunggu $minutes menit.",
                 'type' => 'rate_limit'
             ], 429);
@@ -46,14 +46,14 @@ final class IdentificationNumberController
             $errors = $validator->errors();
 
             if ($errors->has('password')) {
-                return response()->json([
+                return new JsonResponse([
                     'message' => 'Password wajib dimasukan.',
                     'type' => 'password_error'
                 ], 422);
             }
 
             if ($errors->has('pin')) {
-                return response()->json([
+                return new JsonResponse([
                     'message' => 'Pin dan konfirmasi pin harus sama dan tidak boleh kurang dari 6 digit.',
                     'type' => 'pin_error'
                 ], 422);
@@ -69,7 +69,7 @@ final class IdentificationNumberController
                 event(new AuthenticationAttemptsExceeded($user));
             }
 
-            return response()->json([
+            return new JsonResponse([
                 'message' => "Password yang anda masukan salah",
                 'type' => 'password_error'
             ], 422);
