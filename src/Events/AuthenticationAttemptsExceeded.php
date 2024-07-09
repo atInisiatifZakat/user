@@ -15,12 +15,12 @@ class AuthenticationAttemptsExceeded
      **/
     public $user;
 
-
+    /**
+     * @var Model $user
+     **/
     public function __construct($user)
     {
-        /**
-         * @var Model $user
-         **/
+
         $this->user = $user;
     }
 }
