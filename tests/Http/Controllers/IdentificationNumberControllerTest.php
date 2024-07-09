@@ -39,9 +39,9 @@ final class IdentificationNumberControllerTest extends TestCase
             'pin' => '654321',
             'pin_confirmation' => '654321',
             'password' => 'passrod',
-        ]);
+        ])->json();
 
-        $this->assertEquals('password_error', $response['error_type']);
+        $this->assertEquals('password_error', $response['type']);
     }
 
     public function test_max_attempt_incorect_passwotd_to_update_pin(): void
@@ -77,7 +77,7 @@ final class IdentificationNumberControllerTest extends TestCase
             'password' => 'passrod',
         ])->json();
 
-        $this->assertEquals('rate_limit', $response['error_type']);
+        $this->assertEquals('rate_limit', $response['type']);
     }
 
     public function test_pin_and_pin_confirmation_not_equal(): void
@@ -95,6 +95,6 @@ final class IdentificationNumberControllerTest extends TestCase
             'password' => 'password',
         ])->json();
 
-        $this->assertEquals('pin_confirmation_error', $response['error_type']);
+        $this->assertEquals('pin_confirmation_error', $response['type']);
     }
 }
