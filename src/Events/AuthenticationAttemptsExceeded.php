@@ -1,22 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Inisiatif\Package\User\Events;
 
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use Inisiatif\Package\User\Models\User;
+use Illuminate\Foundation\Events\Dispatchable;
 
-class AuthenticationAttemptsExceeded
+final class AuthenticationAttemptsExceeded
 {
     use Dispatchable, SerializesModels;
 
     /**
-     * @var Model $user
+     * @var Model
      **/
     public $user;
 
     /**
-     * @var Model $user
+     * @var Model
      **/
     public function __construct($user)
     {
