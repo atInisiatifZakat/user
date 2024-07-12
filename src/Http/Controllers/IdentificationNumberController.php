@@ -20,22 +20,7 @@ final class IdentificationNumberController
      */
     public function update(Request $request, ConfirmPassword $confirmPassword, UpdateIdentificationNumber $pin): JsonResponse
     {
-        $maxAttempts = \config('user.pin.max_attempts', 3);
-        $decayMinutes = \config('user.pin.max_decay_minutes', 30);
-
         $user = $request->user();
-        $key = 'change-pin-attempts:' . $user->getAuthIdentifier();
-
-
-        if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
-            $seconds = RateLimiter::availableIn($key);
-            $minutes = ceil($seconds / 60);
-
-            return new JsonResponse([
-                'message' => "Terlalu banyak percobaan untuk memasukan password. Mohon tunggu $minutes menit.",
-                'type' => 'rate_limit'
-            ], 429);
-        }
 
         $validator = Validator::make($request->all(), [
             'password' => ['required'],
@@ -62,20 +47,9 @@ final class IdentificationNumberController
 
         $confirm = $confirmPassword->handle($user, $request->string('password')->toString());
 
-        if ($confirm === false) {
-            RateLimiter::hit($key, $decayMinutes * 60);
-
-            if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
-                event(new AuthenticationAttemptsExceeded($user));
-            }
-
-            return new JsonResponse([
-                'message' => "Password yang anda masukan salah",
-                'type' => 'password_error'
-            ], 422);
+        if ($confirm instanceof JsonResponse) {
+            return $confirm;
         }
-
-        RateLimiter::clear($key);
 
         $pin->handle($user, $request->string('pin')->toString());
 
