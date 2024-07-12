@@ -111,7 +111,7 @@ final class IdentificationNumberControllerTest extends TestCase
             'pin' => '1234',
             'pin_confirmation' => '1234',
             'password' => 'password',
-        ]);
+        ])->json();
 
         $this->assertEquals('pin_error', $response['type']);
     }
