@@ -98,7 +98,7 @@ final class IdentificationNumberControllerTest extends TestCase
         $this->assertEquals('pin_error', $response['type']);
     }
 
-    public function test_pin_less_than_six(): void
+    public function test_pin_less_than_six()
     {
         /** @var User $user */
         $user = UserFactory::new()->createOne([
