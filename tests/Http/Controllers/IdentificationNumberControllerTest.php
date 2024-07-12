@@ -27,7 +27,7 @@ final class IdentificationNumberControllerTest extends TestCase
         ])->assertStatus(204);
     }
 
-    public function test_password_incorect_to_update_pin()
+    public function test_password_incorect_to_update_pin(): void
     {
         $user = UserFactory::new()->createOne([
             'pin' => Hash::make('123456'),
