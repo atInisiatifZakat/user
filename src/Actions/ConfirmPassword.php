@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Validation\ValidationException;
 use Inisiatif\Package\User\Events\AuthenticationAttemptsExceeded;
 use Inisiatif\Package\User\ModelRegistrar;
 

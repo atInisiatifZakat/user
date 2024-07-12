@@ -7,11 +7,9 @@ namespace Inisiatif\Package\User\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 use Inisiatif\Package\User\Actions\ConfirmPassword;
 use Inisiatif\Package\User\Actions\UpdateIdentificationNumber;
-use Inisiatif\Package\User\Events\AuthenticationAttemptsExceeded;
 
 final class IdentificationNumberController
 {
@@ -50,7 +48,6 @@ final class IdentificationNumberController
 
         if ($confirm instanceof JsonResponse) {
             return $confirm;
-
         }
 
         $pin->handle($user, $request->string('pin')->toString());
