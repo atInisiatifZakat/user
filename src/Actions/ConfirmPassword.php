@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\RateLimiter;
 use Inisiatif\Package\User\Events\AuthenticationAttemptsExceeded;
 use Inisiatif\Package\User\ModelRegistrar;
+use Inisiatif\Package\User\Utils\PinException;
 
 final class ConfirmPassword
 {
@@ -34,10 +35,7 @@ final class ConfirmPassword
             $seconds = RateLimiter::availableIn($key);
             $minutes = ceil($seconds / 60);
 
-            return new JsonResponse([
-                'message' => "Terlalu banyak percobaan untuk memasukan password. Mohon tunggu $minutes menit.",
-                'type' => 'rate_limit'
-            ], 422);
+            throw new PinException('rate_limit', "Terlalu banyak percobaan untuk memasukan password. Mohon tunggu $minutes menit.");
         }
 
         $hashed = \config('user.hashing_password_before_attempt', true);
@@ -51,10 +49,7 @@ final class ConfirmPassword
                 event(new AuthenticationAttemptsExceeded($user, 'change-password'));
             }
 
-            return new JsonResponse([
-                'message' => "Password yang anda masukan salah",
-                'type' => 'password_error'
-            ], 422);
+            throw new PinException('password_error', "Password yang anda masukan salah");
         }
 
         RateLimiter::clear($key);
