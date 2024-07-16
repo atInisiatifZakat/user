@@ -29,7 +29,7 @@ final class ConfirmPassword
 
         $maxAttempts = \config('user.pin.max_attempts', 3);
         $decayMinutes = \config('user.pin.max_decay_minutes', 30);
-        $key = 'change-pin-attempts:' . $user->getAuthIdentifier();
+        $key = 'password-attempts:' . $user->getAuthIdentifier();
 
         if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
             $seconds = RateLimiter::availableIn($key);
