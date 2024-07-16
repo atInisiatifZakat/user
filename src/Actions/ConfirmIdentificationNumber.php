@@ -10,6 +10,7 @@ use Illuminate\Validation\ValidationException;
 use Inisiatif\Package\User\Models\User;
 use Inisiatif\Package\User\ModelRegistrar;
 use Inisiatif\Package\User\Events\AuthenticationAttemptsExceeded;
+use Inisiatif\Package\User\Utils\PinOrPasswordAttemptException;
 
 final class ConfirmIdentificationNumber
 {
@@ -34,9 +35,10 @@ final class ConfirmIdentificationNumber
             $seconds = RateLimiter::availableIn($key);
             $minutes = ceil($seconds / 60);
 
-            throw ValidationException::withMessages([
-                'pin' => "Terlalu banyak percobaan memasukan pin. Silakan coba lagi dalam $minutes menit.",
-            ]);
+            throw new PinOrPasswordAttemptException(
+                "pin_error",
+                "Terlalu banyak percobaan memasukan pin. Silakan coba lagi dalam $minutes menit."
+            );
         }
 
         $confirmed = Hash::check($pin, $user->getAttribute('pin'));
@@ -48,9 +50,10 @@ final class ConfirmIdentificationNumber
                 event(new AuthenticationAttemptsExceeded($user, 'usage-pin'));
             }
 
-            throw ValidationException::withMessages([
-                'pin' => 'PIN yang diberikan salah.',
-            ]);
+            throw new PinOrPasswordAttemptException(
+                "pin_error",
+                'PIN yang diberikan salah.'
+            );
         }
 
         RateLimiter::clear($key);

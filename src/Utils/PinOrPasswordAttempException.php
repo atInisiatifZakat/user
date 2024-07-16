@@ -6,7 +6,7 @@ namespace Inisiatif\Package\User\Utils;
 
 use Exception;
 
-final class PinException extends Exception
+final class PinOrPasswordAttemptException extends Exception
 {
   private string $errorType;
   private string $customMessage;
@@ -24,7 +24,7 @@ final class PinException extends Exception
     return $this->errorType;
   }
 
-  public function getCustomMessage(): string
+  public function getErrorMessage(): string
   {
     return $this->customMessage;
   }
