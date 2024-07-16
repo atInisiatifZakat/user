@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace Inisiatif\Package\User\Actions;
 
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Validation\ValidationException;
 use Inisiatif\Package\User\Models\User;
 use Inisiatif\Package\User\ModelRegistrar;
-use Inisiatif\Package\User\Events\AuthenticationAttemptsExceeded;
+use Illuminate\Support\Facades\RateLimiter;
 use Inisiatif\Package\User\Utils\PinOrPasswordAttemptException;
+use Inisiatif\Package\User\Events\AuthenticationAttemptsExceeded;
 
 final class ConfirmIdentificationNumber
 {
@@ -21,13 +20,13 @@ final class ConfirmIdentificationNumber
     {
         $maxAttempts = \config('pin.max_attempts', 3);
         $decayMinutes = \config('pin.max_decay_minutes', 30);
-        $key = 'pin-attempts:' . $user->id;
+        $key = 'pin-attempts:'.$user->id;
 
         $modelClass = ModelRegistrar::getUserModel()::class;
 
-        if (!$user instanceof $modelClass) {
+        if (! $user instanceof $modelClass) {
             throw new \RuntimeException(
-                'Parameter $user must be instanceof ' . ModelRegistrar::getUserModelClass()
+                'Parameter $user must be instanceof '.ModelRegistrar::getUserModelClass()
             );
         }
 
@@ -36,14 +35,14 @@ final class ConfirmIdentificationNumber
             $minutes = ceil($seconds / 60);
 
             throw new PinOrPasswordAttemptException(
-                "pin_error",
+                'pin_error',
                 "Terlalu banyak percobaan memasukan pin. Silakan coba lagi dalam $minutes menit."
             );
         }
 
         $confirmed = Hash::check($pin, $user->getAttribute('pin'));
 
-        if (!$confirmed) {
+        if (! $confirmed) {
             RateLimiter::hit($key, 60 * $decayMinutes);
 
             if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
@@ -51,7 +50,7 @@ final class ConfirmIdentificationNumber
             }
 
             throw new PinOrPasswordAttemptException(
-                "pin_error",
+                'pin_error',
                 'PIN yang diberikan salah.'
             );
         }
