@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Inisiatif\Package\User\Events;
 
 use Illuminate\Queue\SerializesModels;
-
 use Illuminate\Foundation\Events\Dispatchable;
 
 final class AuthenticationAttemptsExceeded

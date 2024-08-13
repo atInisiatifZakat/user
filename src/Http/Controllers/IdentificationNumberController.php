@@ -44,7 +44,6 @@ final class IdentificationNumberController
 
             $confirm = $confirmPassword->handle($user, $request->string('password')->toString());
 
-
             if ($confirm instanceof JsonResponse) {
                 return $confirm;
             }

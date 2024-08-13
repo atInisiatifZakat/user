@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Route;
 use Inisiatif\Package\User\Http\Controllers\ProfileController;
 use Inisiatif\Package\User\Http\Controllers\TokenAuthController;
 use Inisiatif\Package\User\Http\Controllers\UserTokenController;
+use Inisiatif\Package\User\Http\Controllers\Passport\CallbackController;
+use Inisiatif\Package\User\Http\Controllers\Passport\RedirectController;
 use Inisiatif\Package\User\Http\Controllers\IdentificationNumberController;
 
 final class Routes
@@ -37,5 +39,11 @@ final class Routes
             $router->get('/user-token', [UserTokenController::class, 'index']);
             $router->delete('/user-token/{tokenId}', [UserTokenController::class, 'destroy']);
         });
+    }
+
+    public static function passport(): void
+    {
+        Route::get('/oauth/passport/redirect', [RedirectController::class, 'create']);
+        Route::get('/oauth/passport/redirect', [CallbackController::class, 'store']);
     }
 }

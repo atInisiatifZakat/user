@@ -13,6 +13,18 @@
       <code><![CDATA[attempt]]></code>
     </UndefinedInterfaceMethod>
   </file>
+  <file src="src/Events/AuthenticationAttemptsExceeded.php">
+    <PossiblyInvalidDocblockTag>
+      <code><![CDATA[@var Model]]></code>
+    </PossiblyInvalidDocblockTag>
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$action]]></code>
+      <code><![CDATA[$user]]></code>
+    </PossiblyUnusedProperty>
+    <UndefinedDocblockClass>
+      <code><![CDATA[Model]]></code>
+    </UndefinedDocblockClass>
+  </file>
   <file src="src/Factories/UserFactory.php">
     <PossiblyUnusedMethod>
       <code><![CDATA[employee]]></code>
@@ -28,6 +40,22 @@
     </PossiblyNullArgument>
     <PossiblyUnusedMethod>
       <code><![CDATA[update]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Http/Controllers/Passport/CallbackController.php">
+    <InvalidArgument>
+      <code><![CDATA['401']]></code>
+    </InvalidArgument>
+    <UndefinedInterfaceMethod>
+      <code><![CDATA[login]]></code>
+    </UndefinedInterfaceMethod>
+    <UnusedClass>
+      <code><![CDATA[CallbackController]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Controllers/Passport/RedirectController.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[create]]></code>
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Http/Controllers/ProfileController.php">
@@ -85,6 +113,18 @@
       <code><![CDATA[branch]]></code>
       <code><![CDATA[employee]]></code>
     </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Passport/UserProfile.php">
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$email]]></code>
+      <code><![CDATA[$loginableType]]></code>
+      <code><![CDATA[$name]]></code>
+    </PossiblyUnusedProperty>
+  </file>
+  <file src="src/Passport/UserResolver.php">
+    <PossiblyNullArgument>
+      <code><![CDATA[$accessToken]]></code>
+    </PossiblyNullArgument>
   </file>
   <file src="src/Routes.php">
     <UnusedClass>
