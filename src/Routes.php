@@ -44,6 +44,6 @@ final class Routes
     public static function passport(): void
     {
         Route::get('/oauth/passport/redirect', [RedirectController::class, 'create']);
-        Route::get('/oauth/passport/redirect', [CallbackController::class, 'store']);
+        Route::get('/oauth/passport/callback', [CallbackController::class, 'store']);
     }
 }
