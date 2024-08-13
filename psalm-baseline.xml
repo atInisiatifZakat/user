@@ -34,6 +34,9 @@
     <ArgumentTypeCoercion>
       <code><![CDATA[$user]]></code>
     </ArgumentTypeCoercion>
+    <AssignmentToVoid>
+      <code><![CDATA[$confirm]]></code>
+    </AssignmentToVoid>
     <PossiblyNullArgument>
       <code><![CDATA[$user]]></code>
       <code><![CDATA[$user]]></code>
@@ -41,17 +44,23 @@
     <PossiblyUnusedMethod>
       <code><![CDATA[update]]></code>
     </PossiblyUnusedMethod>
+    <TypeDoesNotContainType>
+      <code><![CDATA[$confirm instanceof JsonResponse]]></code>
+    </TypeDoesNotContainType>
+    <UnusedVariable>
+      <code><![CDATA[$confirm]]></code>
+    </UnusedVariable>
   </file>
   <file src="src/Http/Controllers/Passport/CallbackController.php">
     <InvalidArgument>
       <code><![CDATA['401']]></code>
     </InvalidArgument>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[store]]></code>
+    </PossiblyUnusedMethod>
     <UndefinedInterfaceMethod>
       <code><![CDATA[login]]></code>
     </UndefinedInterfaceMethod>
-    <UnusedClass>
-      <code><![CDATA[CallbackController]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Http/Controllers/Passport/RedirectController.php">
     <PossiblyUnusedMethod>
@@ -112,6 +121,11 @@
     <PossiblyUnusedMethod>
       <code><![CDATA[branch]]></code>
       <code><![CDATA[employee]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Passport.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[logout]]></code>
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Passport/UserProfile.php">
