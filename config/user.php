@@ -49,16 +49,21 @@ return [
      */
     'hashing_password_before_attempt' => true,
 
-
     /**
      * Pin
      * -----------------------------------------------------------------------------------------------------------------
-     * Menentukan berapa kali boleh salah memasukkan PIN 
+     * Menentukan berapa kali boleh salah memasukkan PIN
      * dan waktu tunggu setelah mencapai batas maksimal memasukan pin yang salah.
      */
-
     'pin' => [
         'max_attempts' => env('INISIATIF_USER_PIN_MAX_ATTEMPTS', 3),
         'decay_minutes' => env('INISIATIF_USER_PIN_DECAY_MINUTES', 30),
-    ]
+    ],
+
+    /**
+     * Passport
+     * -----------------------------------------------------------------------------------------------------------------
+     * Untuk keperluan development di local, kita bisa mendisable verifikasi ssl saat menggunakan passport
+     */
+    'disable_ssl_verify_passport' => env('INISIATIF_PASSPORT_SSL_DISABLE', false),
 ];

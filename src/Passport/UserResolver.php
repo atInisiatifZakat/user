@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use InvalidArgumentException;
 use Illuminate\Support\Facades\Http;
 use Inisiatif\Package\User\Passport;
+use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\ConnectionException;
 
 final class UserResolver
@@ -33,7 +34,7 @@ final class UserResolver
      */
     private function fetchPassportUser(string $token): UserProfile
     {
-        $response = Http::asJson()->withToken($token)->get(Passport::profileUrl());
+        $response = $this->getHttpClient()->asJson()->withToken($token)->get(Passport::profileUrl());
 
         return new UserProfile(
             $response->json('id'),
@@ -55,7 +56,7 @@ final class UserResolver
 
         \throw_unless($state !== '' && $state === $request->input('state'), InvalidArgumentException::class);
 
-        $response = Http::asForm()->post(Passport::baseUrl().'/oauth/token', [
+        $response = $this->getHttpClient()->asForm()->post(Passport::baseUrl().'/oauth/token', [
             'grant_type' => 'authorization_code',
             'client_id' => Passport::clientId(),
             'redirect_uri' => Passport::callbackUrl(),
@@ -64,5 +65,12 @@ final class UserResolver
         ]);
 
         return $response->json('access_token');
+    }
+
+    private function getHttpClient(): PendingRequest
+    {
+        $disableSsl = \config('user.disable_ssl_verify_passport', false);
+
+        return $disableSsl ? Http::withoutVerifying() : Http::createPendingRequest();
     }
 }

@@ -19,6 +19,11 @@ final class Passport
         return \config('services.passport.base_url');
     }
 
+    public static function logout(): string
+    {
+        return self::baseUrl().'/logout';
+    }
+
     public static function redirectUrl(string $query): string
     {
         return self::baseUrl().'/oauth/authorize?'.$query;
