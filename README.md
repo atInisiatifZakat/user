@@ -124,6 +124,36 @@ User\Routes::personalIdentification();
 5. GET `/user-information` : untuk menampilkan informasi user yang sedang login
 6. PUT `/personal-identification-number` : untuk mengupdate `pin` user
 
+### Passport
+
+Mulai versi `3.3` ditambahkan fitur untuk auth menggunakan OAuth2 via `laravel/passport`.
+
+Pertama harus menamhakan configurasi di `config/services.php`
+
+```php
+<?php
+
+return [
+    // Configurasi yang lain
+    
+    'passport' => [
+        'client_id' => env('INISIATIF_PASSPORT_CLIENT_ID'),
+        'callback_url' => env('INISIATIF_PASSPORT_CALLBACK_URL'),
+        'base_url' => env('INISIATIF_PASSPORT_BASE_URL', 'http://me.inisiatif.id'),
+    ],
+]
+```
+
+Kedua tambahkan router baru pada `routes/web.php`
+
+```php
+use Inisiatif\Package\User;
+
+User\Routes::passport();
+```
+
+ini akan menambahkan route baru yaitu `/ouath/passport/redirect` dan `/oauth/passport/callback`.
+
 ## Testing
 ```bash
 copmoser test
