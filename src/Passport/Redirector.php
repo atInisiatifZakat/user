@@ -50,7 +50,7 @@ final class Redirector
     {
         return \http_build_query([
             'client_id' => Passport::clientId(),
-            'redirect_uri' => Passport::baseUrl(),
+            'redirect_uri' => Passport::callbackUrl(),
             'response_type' => 'code',
             'state' => $this->state,
             'code_challenge' => $this->codeChallenge,
