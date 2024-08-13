@@ -15,7 +15,7 @@ final class UserResolver
 {
     public static function make(): self
     {
-        return new self();
+        return new self;
     }
 
     /**
