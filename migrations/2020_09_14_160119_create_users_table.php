@@ -10,7 +10,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        $tableName = config('user.table_names.users', 'users');
+        $tableName = \config('user.table_names.users', 'users');
 
         Schema::create($tableName, function (Blueprint $table): void {
             $table->uuid('id')->primary();
@@ -27,6 +27,8 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists(
+            \config('user.table_names.users', 'users')
+        );
     }
 };
