@@ -19,9 +19,7 @@ final class ChangePasswordActionTest extends UserTestCase
 {
     public function test_can_change_password(): void
     {
-        $user = new class() extends AbstractUser
-        {
-        };
+        $user = new class extends AbstractUser {};
 
         $dispatcher = m::mock(Dispatcher::class);
         $dispatcher->shouldReceive('dispatch')

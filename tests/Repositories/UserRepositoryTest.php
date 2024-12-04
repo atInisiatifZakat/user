@@ -15,7 +15,7 @@ final class UserRepositoryTest extends UserTestCase
     {
         $this->createUser();
 
-        $user = new UserModel();
+        $user = new UserModel;
         $repository = new UserRepository($user);
 
         $user1 = $repository->findUsingEmailOrUsername('foo@bar.com');

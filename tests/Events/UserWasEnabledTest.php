@@ -14,7 +14,7 @@ final class UserWasEnabledTest extends UserTestCase
 {
     public function test_can_create_event_object(): void
     {
-        $user = new UserModel();
+        $user = new UserModel;
 
         $event = new UserWasEnabled($user);
 

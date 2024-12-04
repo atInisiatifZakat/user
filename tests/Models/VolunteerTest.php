@@ -16,13 +16,11 @@ final class VolunteerTest extends UserTestCase
 {
     public function test_user_relation_must_be_return_correct_class(): void
     {
-        $employee = new Volunteer();
+        $employee = new Volunteer;
 
         $this->assertSame(UserModel::class, \get_class($employee->user()->getModel()));
 
-        $userClass = new class() extends AbstractUser
-        {
-        };
+        $userClass = new class extends AbstractUser {};
 
         $this->app->bind(UserModel::class, \get_class($userClass));
 

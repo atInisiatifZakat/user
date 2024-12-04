@@ -14,7 +14,7 @@ final class UserDisableOrEnableAction extends UserAction
 {
     public function handle(UserInterface $user, bool $isActive): UserInterface
     {
-        $value = $isActive ? null : new DateTime();
+        $value = $isActive ? null : new DateTime;
 
         $user->setDeactivatedAt($value);
 

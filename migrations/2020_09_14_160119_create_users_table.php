@@ -6,11 +6,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-return new class() extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table): void {
+        $tableName = config('user.table_names.users', 'users');
+
+        Schema::create($tableName, function (Blueprint $table): void {
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('username', 100)->unique();
