@@ -25,6 +25,8 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('personal_access_tokens');
+        Schema::dropIfExists(
+            \config('user.table_names.personal_access_tokens', 'personal_access_tokens')
+        );
     }
 };
