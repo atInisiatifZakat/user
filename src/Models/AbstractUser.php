@@ -21,11 +21,11 @@ use Inisiatif\Package\Contract\User\Model\LoginableAwareInterface;
 use Inisiatif\Package\Contract\Common\Concern\ToggleAwareInterface;
 use Illuminate\Auth\Passwords\CanResetPassword as CanResetPasswordTrait;
 
-abstract class AbstractUser extends Model implements UserInterface, LoginableAwareInterface, Authenticatable, ToggleAwareInterface, CanResetPassword
+abstract class AbstractUser extends Model implements Authenticatable, CanResetPassword, LoginableAwareInterface, ToggleAwareInterface, UserInterface
 {
-    use Notifiable;
     use AuthenticatableTrait;
     use CanResetPasswordTrait;
+    use Notifiable;
 
     public $incrementing = false;
 
@@ -51,7 +51,7 @@ abstract class AbstractUser extends Model implements UserInterface, LoginableAwa
 
     public static function fromArray(array $attributes): UserInterface
     {
-        return UserBuilder::makeFromArray(new static(), $attributes);
+        return UserBuilder::makeFromArray(new static, $attributes);
     }
 
     public function getId(): ?string
@@ -162,6 +162,6 @@ abstract class AbstractUser extends Model implements UserInterface, LoginableAwa
 
     public function setIsActive(bool $value)
     {
-        return $value === false ? $this->setDeactivatedAt(new DateTime()) : $this->setDeactivatedAt(null);
+        return $value === false ? $this->setDeactivatedAt(new DateTime) : $this->setDeactivatedAt(null);
     }
 }

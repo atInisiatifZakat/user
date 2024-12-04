@@ -31,7 +31,7 @@ abstract class UserTestCase extends TestCase
 
     protected function createUser(): UserModel
     {
-        $user = new UserModel();
+        $user = new UserModel;
         $user->setId('f6ad7c84-70c8-4f5e-8b96-efb0ceae1d31');
         $user->setUsername('foobar');
         $user->setName('Foo Bar');

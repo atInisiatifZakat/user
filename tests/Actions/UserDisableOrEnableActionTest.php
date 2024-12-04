@@ -18,9 +18,7 @@ final class UserDisableOrEnableActionTest extends UserTestCase
 {
     public function test_can_disable_user(): void
     {
-        $user = new class() extends AbstractUser
-        {
-        };
+        $user = new class extends AbstractUser {};
 
         $dispatcher = m::mock(Dispatcher::class);
         $dispatcher->shouldReceive('dispatch')
@@ -60,9 +58,7 @@ final class UserDisableOrEnableActionTest extends UserTestCase
 
     public function test_can_enable_user(): void
     {
-        $user = new class() extends AbstractUser
-        {
-        };
+        $user = new class extends AbstractUser {};
 
         $dispatcher = m::mock(Dispatcher::class);
         $dispatcher->shouldReceive('dispatch')

@@ -14,7 +14,7 @@ final class UserBuilderTest extends UserTestCase
 {
     public function test_can_create_object_user_from_array(): void
     {
-        $user = UserBuilder::makeFromArray(new UserModel(), [
+        $user = UserBuilder::makeFromArray(new UserModel, [
             'name' => 'foo bar',
             'email' => 'bar@foo.com',
             'username' => 'foobar',
@@ -38,7 +38,7 @@ final class UserBuilderTest extends UserTestCase
             'loginable_type' => LoginableAwareInterface::TYPE_AGENT,
         ]);
 
-        $user = UserBuilder::makeFromRequest(new UserModel(), $request);
+        $user = UserBuilder::makeFromRequest(new UserModel, $request);
 
         $this->assertNotNull($user->getId());
         $this->assertSame($user->getName(), 'foo bar');

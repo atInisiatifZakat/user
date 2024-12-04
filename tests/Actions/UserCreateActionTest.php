@@ -19,9 +19,7 @@ final class UserCreateActionTest extends UserTestCase
 {
     public function test_can_create_user(): void
     {
-        $user = UserBuilder::makeFromArray(new class() extends AbstractUser
-        {
-        }, [
+        $user = UserBuilder::makeFromArray(new class extends AbstractUser {}, [
             'name' => 'foo bar',
             'email' => 'bar@foo.com',
             'username' => 'foobar',
